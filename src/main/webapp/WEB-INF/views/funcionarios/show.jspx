@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_dsc_hikomaki_domain_Funcionario" object="${funcionario}" path="/funcionarios" z="tgz7Yfurj+LUf2LK4kuiCB7Gv/Y=">
+        <field:display field="nome" id="s_com_dsc_hikomaki_domain_Funcionario_nome" object="${funcionario}" z="ipV5iPmWqB3wrZQ7kn4Ci0SHGEE="/>
+        <field:display field="turno" id="s_com_dsc_hikomaki_domain_Funcionario_turno" object="${funcionario}" z="0Qe6ljVFyCtnExflaixDKGaTlFA="/>
+        <field:display field="telefone" id="s_com_dsc_hikomaki_domain_Funcionario_telefone" object="${funcionario}" z="wKseTNSEG1qQsFwEHWn0DRcFILM="/>
+        <field:display date="true" dateTimePattern="${funcionario_datanasc_date_format}" field="dataNasc" id="s_com_dsc_hikomaki_domain_Funcionario_dataNasc" object="${funcionario}" z="9pX9FzbJl5D+GB85viXhAK/llDk="/>
+    </page:show>
+</div>

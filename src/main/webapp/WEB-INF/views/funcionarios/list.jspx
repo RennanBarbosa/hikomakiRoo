@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_dsc_hikomaki_domain_Funcionario" items="${funcionarios}" z="617vqeOHQdOu/FWfqNc2leBqGMc=">
+        <table:table data="${funcionarios}" id="l_com_dsc_hikomaki_domain_Funcionario" path="/funcionarios" z="tRx6Th7kdewyBPd+lXsl9to8Yvc=">
+            <table:column id="c_com_dsc_hikomaki_domain_Funcionario_nome" property="nome" z="38OB/8LseBPJeBjsgWx3LgVcmnY="/>
+            <table:column id="c_com_dsc_hikomaki_domain_Funcionario_turno" property="turno" z="liMPuPLvu93BmdRq0dFA9NRtmDQ="/>
+            <table:column id="c_com_dsc_hikomaki_domain_Funcionario_telefone" property="telefone" z="ktoAY9qaiuIz0nloQj/M/NGrXRE="/>
+            <table:column date="true" dateTimePattern="${funcionario_datanasc_date_format}" id="c_com_dsc_hikomaki_domain_Funcionario_dataNasc" property="dataNasc" z="kHpSdP7xv92DzeE4k0IrVqCr4vA="/>
+        </table:table>
+    </page:list>
+</div>

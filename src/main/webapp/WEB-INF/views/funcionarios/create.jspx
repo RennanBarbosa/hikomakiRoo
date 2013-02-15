@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_com_dsc_hikomaki_domain_Funcionario" modelAttribute="funcionario" path="/funcionarios" render="${empty dependencies}" z="qDTf9T+8tROWqQy8BReGXtxo+jg=">
+        <field:input field="nome" id="c_com_dsc_hikomaki_domain_Funcionario_nome" required="true" z="mByxzPgr1K9vK0MlqoxP2UUhO9Y="/>
+        <field:input field="turno" id="c_com_dsc_hikomaki_domain_Funcionario_turno" required="true" z="HHYvD4FipXwEdFRUYNn/LbU3f1I="/>
+        <field:input field="telefone" id="c_com_dsc_hikomaki_domain_Funcionario_telefone" required="true" z="mobH+Ma/H41/xOmoWjGTAlpg6xs="/>
+        <field:datetime dateTimePattern="${funcionario_datanasc_date_format}" field="dataNasc" id="c_com_dsc_hikomaki_domain_Funcionario_dataNasc" past="true" required="true" z="AuxrGseOhajZF1m6W10UUGECZr8="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_com_dsc_hikomaki_domain_Funcionario" render="${not empty dependencies}" z="rpWKFHH/yRv18IUsNwtdKWQnPWk="/>
+</div>

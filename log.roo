@@ -1,0 +1,44 @@
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-02-15 11:11:57
+download status
+download accept terms of use
+download status
+quit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-02-15 11:13:16
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-02-15 11:13:29
+project --topLevelPackage com.dsc.hikomaki --java 6 --projectName hikomki-gami
+hint
+jpa setup --provider HIBERNATE --database POSTGRES
+hint
+entity jpa --class ~.domain.Prato --testAutomatically
+hint
+field string --fieldName nome --class ~.domain.Prato --notNull
+field string --fieldName ingredientes --class ~.domain.Prato --notNull
+field number --type java.lang.Double  --fieldName preco --class ~.domain.Prato --notNull
+entity jpa --class ~.domain.Funcionario --testAutomatically
+field string --fieldName nome --class ~.domain.Funcionario --notNull 
+field string --fieldName turno --class ~.domain.Funcionario --notNull
+field string --fieldName telefone --class ~.domain.Funcionario --notNull
+field date --type java.util.Date --fieldName dataNasc --class ~.domain.Funcionario --notNull --past
+entity jpa --class ~.domain.Mesa --testAutomatically 
+field string --fieldName nomeMesa --class ~.domain.Mesa --notNull --unique
+field reference --fieldName funcionario --type ~.domain.Funcionario
+field set --fieldName prato --type ~.domain.Prato
+hint
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-02-15 11:56:57
+perform test
+perform tests
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-02-15 12:05:34
+perform tests
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-02-15 12:11:02
+hint
+web mvc setup
+web mvc all --package ~.web
+quit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-02-15 12:14:24
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-02-15 13:51:10
+hint
+help
+hint
+jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
+quit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-02-15 13:58:43

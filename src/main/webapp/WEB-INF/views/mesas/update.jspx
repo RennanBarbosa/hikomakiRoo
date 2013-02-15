@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_dsc_hikomaki_domain_Mesa" modelAttribute="mesa" path="/mesas" versionField="Version" z="z+SQCc40fx/768PyJ1vKdmvMnnM=">
+        <field:input field="nomeMesa" id="c_com_dsc_hikomaki_domain_Mesa_nomeMesa" required="true" z="sUCTFwWu25yQh1JpT2xSMoMPU5s="/>
+        <field:select field="funcionario" id="c_com_dsc_hikomaki_domain_Mesa_funcionario" itemValue="id" items="${funcionarios}" path="/funcionarios" z="n5SWgUO7o9tK7Zqy/pe350N9dAQ="/>
+        <field:select field="prato" id="c_com_dsc_hikomaki_domain_Mesa_prato" itemValue="id" items="${pratoes}" multiple="true" path="/pratoes" z="KXZHwQ1RuHfMYXq8Hvr+JyV0oh8="/>
+    </form:update>
+</div>

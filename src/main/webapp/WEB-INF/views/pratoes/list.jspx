@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_dsc_hikomaki_domain_Prato" items="${pratoes}" z="Y0nPxy9D8IJtfoYdbsTmtgvPoug=">
+        <table:table data="${pratoes}" id="l_com_dsc_hikomaki_domain_Prato" path="/pratoes" z="NXVRkf899w1LYYFBtj6Cator/hI=">
+            <table:column id="c_com_dsc_hikomaki_domain_Prato_nome" property="nome" z="NGO0Onhga0S2ucRxLTALI3bviIc="/>
+            <table:column id="c_com_dsc_hikomaki_domain_Prato_ingredientes" property="ingredientes" z="UG3JKhG7DVvhVxBsbUUXZuOKYLY="/>
+            <table:column id="c_com_dsc_hikomaki_domain_Prato_preco" property="preco" z="WV5Zn9uK7lwuQt8X9vISmJIa3Jg="/>
+        </table:table>
+    </page:list>
+</div>
