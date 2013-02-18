@@ -7,5 +7,6 @@
         <field:input field="turno" id="c_com_dsc_hikomaki_domain_Funcionario_turno" required="true" z="HHYvD4FipXwEdFRUYNn/LbU3f1I="/>
         <field:input field="telefone" id="c_com_dsc_hikomaki_domain_Funcionario_telefone" required="true" z="mobH+Ma/H41/xOmoWjGTAlpg6xs="/>
         <field:datetime dateTimePattern="${funcionario_datanasc_date_format}" field="dataNasc" id="c_com_dsc_hikomaki_domain_Funcionario_dataNasc" past="true" required="true" z="AuxrGseOhajZF1m6W10UUGECZr8="/>
+        <field:simple field="mesas" id="c_com_dsc_hikomaki_domain_Funcionario_mesas" messageCode="entity_reference_not_managed" messageCodeAttribute="Mesa" z="4u58jTackpwitNjMoqcjmD6GHbk="/>
     </form:update>
 </div>

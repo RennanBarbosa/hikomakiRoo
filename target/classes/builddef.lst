@@ -13,8 +13,8 @@ UTF-8
 /Users/Rennan/Dropbox/UFPB/2012.1/Distribui?dos/dsc-restaurante/target/classes
 /Users/Rennan/Dropbox/UFPB/2012.1/Distribui?dos/dsc-restaurante/src/main/java/com/dsc/hikomaki/web/ApplicationConversionServiceFactoryBean_Roo_ConversionService.aj
 /Users/Rennan/Dropbox/UFPB/2012.1/Distribui?dos/dsc-restaurante/src/main/java/com/dsc/hikomaki/domain/Funcionario.java
-/Users/Rennan/Dropbox/UFPB/2012.1/Distribui?dos/dsc-restaurante/src/main/java/com/dsc/hikomaki/domain/Prato.java
 /Users/Rennan/Dropbox/UFPB/2012.1/Distribui?dos/dsc-restaurante/src/main/java/com/dsc/hikomaki/domain/Funcionario_Roo_ToString.aj
+/Users/Rennan/Dropbox/UFPB/2012.1/Distribui?dos/dsc-restaurante/src/main/java/com/dsc/hikomaki/domain/Prato.java
 /Users/Rennan/Dropbox/UFPB/2012.1/Distribui?dos/dsc-restaurante/src/main/java/com/dsc/hikomaki/domain/Funcionario_Roo_Configurable.aj
 /Users/Rennan/Dropbox/UFPB/2012.1/Distribui?dos/dsc-restaurante/src/main/java/com/dsc/hikomaki/web/MesaController.java
 /Users/Rennan/Dropbox/UFPB/2012.1/Distribui?dos/dsc-restaurante/src/main/java/com/dsc/hikomaki/domain/Mesa_Roo_Jpa_ActiveRecord.aj
@@ -25,14 +25,16 @@ UTF-8
 /Users/Rennan/Dropbox/UFPB/2012.1/Distribui?dos/dsc-restaurante/src/main/java/com/dsc/hikomaki/domain/Mesa_Roo_ToString.aj
 /Users/Rennan/Dropbox/UFPB/2012.1/Distribui?dos/dsc-restaurante/src/main/java/com/dsc/hikomaki/domain/Prato_Roo_Configurable.aj
 /Users/Rennan/Dropbox/UFPB/2012.1/Distribui?dos/dsc-restaurante/src/main/java/com/dsc/hikomaki/domain/Mesa_Roo_Jpa_Entity.aj
+/Users/Rennan/Dropbox/UFPB/2012.1/Distribui?dos/dsc-restaurante/src/main/java/com/dsc/hikomaki/domain/Funcionario_Roo_Finder.aj
 /Users/Rennan/Dropbox/UFPB/2012.1/Distribui?dos/dsc-restaurante/src/main/java/com/dsc/hikomaki/domain/Prato_Roo_ToString.aj
 /Users/Rennan/Dropbox/UFPB/2012.1/Distribui?dos/dsc-restaurante/src/main/java/com/dsc/hikomaki/web/MesaController_Roo_Controller.aj
 /Users/Rennan/Dropbox/UFPB/2012.1/Distribui?dos/dsc-restaurante/src/main/java/com/dsc/hikomaki/web/PratoController_Roo_Controller.aj
+/Users/Rennan/Dropbox/UFPB/2012.1/Distribui?dos/dsc-restaurante/src/main/java/com/dsc/hikomaki/domain/Prato_Roo_Finder.aj
 /Users/Rennan/Dropbox/UFPB/2012.1/Distribui?dos/dsc-restaurante/src/main/java/com/dsc/hikomaki/domain/Mesa_Roo_Configurable.aj
 /Users/Rennan/Dropbox/UFPB/2012.1/Distribui?dos/dsc-restaurante/src/main/java/com/dsc/hikomaki/web/FuncionarioController_Roo_Controller.aj
+/Users/Rennan/Dropbox/UFPB/2012.1/Distribui?dos/dsc-restaurante/src/main/java/com/dsc/hikomaki/web/PratoController.java
 /Users/Rennan/Dropbox/UFPB/2012.1/Distribui?dos/dsc-restaurante/src/main/java/com/dsc/hikomaki/domain/Prato_Roo_Jpa_ActiveRecord.aj
 /Users/Rennan/Dropbox/UFPB/2012.1/Distribui?dos/dsc-restaurante/src/main/java/com/dsc/hikomaki/web/ApplicationConversionServiceFactoryBean.java
-/Users/Rennan/Dropbox/UFPB/2012.1/Distribui?dos/dsc-restaurante/src/main/java/com/dsc/hikomaki/web/PratoController.java
 /Users/Rennan/Dropbox/UFPB/2012.1/Distribui?dos/dsc-restaurante/src/main/java/com/dsc/hikomaki/domain/Mesa.java
 /Users/Rennan/Dropbox/UFPB/2012.1/Distribui?dos/dsc-restaurante/src/main/java/com/dsc/hikomaki/domain/Mesa_Roo_JavaBean.aj
 /Users/Rennan/Dropbox/UFPB/2012.1/Distribui?dos/dsc-restaurante/src/main/java/com/dsc/hikomaki/domain/Prato_Roo_Jpa_Entity.aj

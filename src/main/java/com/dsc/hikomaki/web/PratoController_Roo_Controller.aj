@@ -3,6 +3,7 @@
 
 package com.dsc.hikomaki.web;
 
+import com.dsc.hikomaki.domain.Mesa;
 import com.dsc.hikomaki.domain.Prato;
 import com.dsc.hikomaki.web.PratoController;
 import java.io.UnsupportedEncodingException;
@@ -86,6 +87,7 @@ privileged aspect PratoController_Roo_Controller {
     
     void PratoController.populateEditForm(Model uiModel, Prato prato) {
         uiModel.addAttribute("prato", prato);
+        uiModel.addAttribute("mesas", Mesa.findAllMesas());
     }
     
     String PratoController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

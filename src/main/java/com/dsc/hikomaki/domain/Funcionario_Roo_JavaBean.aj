@@ -4,7 +4,9 @@
 package com.dsc.hikomaki.domain;
 
 import com.dsc.hikomaki.domain.Funcionario;
+import com.dsc.hikomaki.domain.Mesa;
 import java.util.Date;
+import java.util.Set;
 
 privileged aspect Funcionario_Roo_JavaBean {
     
@@ -38,6 +40,14 @@ privileged aspect Funcionario_Roo_JavaBean {
     
     public void Funcionario.setDataNasc(Date dataNasc) {
         this.dataNasc = dataNasc;
+    }
+    
+    public Set<Mesa> Funcionario.getMesas() {
+        return this.mesas;
+    }
+    
+    public void Funcionario.setMesas(Set<Mesa> mesas) {
+        this.mesas = mesas;
     }
     
 }

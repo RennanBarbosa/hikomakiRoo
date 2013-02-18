@@ -4,6 +4,7 @@
 package com.dsc.hikomaki.web;
 
 import com.dsc.hikomaki.domain.Funcionario;
+import com.dsc.hikomaki.domain.Mesa;
 import com.dsc.hikomaki.web.FuncionarioController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
@@ -95,6 +96,7 @@ privileged aspect FuncionarioController_Roo_Controller {
     void FuncionarioController.populateEditForm(Model uiModel, Funcionario funcionario) {
         uiModel.addAttribute("funcionario", funcionario);
         addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("mesas", Mesa.findAllMesas());
     }
     
     String FuncionarioController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

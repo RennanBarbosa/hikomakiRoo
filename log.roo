@@ -42,3 +42,59 @@ hint
 jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
 quit
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-02-15 13:58:43
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-02-18 09:14:42
+quit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-02-18 09:14:53
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-02-18 15:59:21
+// [failed] focus --class Mesa
+// [failed] focus --class com.dsc.hikomaki.Mesa
+hint focus
+// [failed] finder list
+// [failed] finder list
+hint
+hint topics
+hint finders
+// [failed] finder list
+quit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-02-18 16:03:20
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-02-18 16:03:27
+hint
+hint finders
+// [failed] focus --class Mesa
+// [failed] finder list
+// [failed] finder list
+// [failed] focus --class Prato
+// [failed] finder list
+// [failed] focus --class Funcionario
+// [failed] finder list
+// [failed] focus --class mesa
+// [failed] finder list  
+focus --class ~.domain.Mesa
+finder list  
+focus --class ~.domain.Prato
+finder list
+focus --class ~.domain.Funcionario
+finder list
+focus --class ~.domain.Funcionario
+focus --class ~.domain.Prato
+finder list
+focus --class ~.domain.Mesa
+finder list
+focus --class ~.domain.Prato
+focus --class ~.domain.Funcionario
+field set --fieldName mesas --type ~.domain.Mesa --cardinality ONE_TO_MANY --mappedBy 
+// [failed] field set --fieldName mesas --type ~.domain.Mesa --cardinality ONE_TO_MANY --mappedBy Funcionario
+hint field
+hint
+hint topics
+hint fields
+focus --class ~.domain.Prato
+field reference --fieldName mesa --type ~.domain.Mesa --cardinality MANY_TO_ONE
+finder list
+finder add --finderName findPratoesByMesa
+focus --class ~.domain.Funcionario
+finder list
+finder add --finderName findFuncionariosByMesas
+perform test
+perform test
+perform test

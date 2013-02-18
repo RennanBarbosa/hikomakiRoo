@@ -6,6 +6,7 @@
 <aspect name="com.dsc.hikomaki.web.FuncionarioController_Roo_Controller"/>
 <aspect name="com.dsc.hikomaki.domain.Mesa_Roo_Jpa_Entity"/>
 <aspect name="com.dsc.hikomaki.domain.Prato_Roo_Configurable"/>
+<aspect name="com.dsc.hikomaki.domain.Funcionario_Roo_Finder"/>
 <aspect name="com.dsc.hikomaki.domain.Prato_Roo_JavaBean"/>
 <aspect name="com.dsc.hikomaki.domain.Mesa_Roo_Configurable"/>
 <aspect name="com.dsc.hikomaki.domain.Mesa_Roo_Jpa_ActiveRecord"/>
@@ -15,6 +16,7 @@
 <aspect name="com.dsc.hikomaki.domain.Prato_Roo_ToString"/>
 <aspect name="com.dsc.hikomaki.domain.Prato_Roo_Jpa_ActiveRecord"/>
 <aspect name="com.dsc.hikomaki.domain.Mesa_Roo_JavaBean"/>
+<aspect name="com.dsc.hikomaki.domain.Prato_Roo_Finder"/>
 <aspect name="com.dsc.hikomaki.web.MesaController_Roo_Controller"/>
 <aspect name="com.dsc.hikomaki.domain.Funcionario_Roo_JavaBean"/>
 <aspect name="com.dsc.hikomaki.domain.Prato_Roo_Jpa_Entity"/>

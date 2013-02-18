@@ -7,6 +7,7 @@
             <table:column id="c_com_dsc_hikomaki_domain_Prato_nome" property="nome" z="NGO0Onhga0S2ucRxLTALI3bviIc="/>
             <table:column id="c_com_dsc_hikomaki_domain_Prato_ingredientes" property="ingredientes" z="UG3JKhG7DVvhVxBsbUUXZuOKYLY="/>
             <table:column id="c_com_dsc_hikomaki_domain_Prato_preco" property="preco" z="WV5Zn9uK7lwuQt8X9vISmJIa3Jg="/>
+            <table:column id="c_com_dsc_hikomaki_domain_Prato_mesa" property="mesa" z="ALHiSAK3OONY3Y9FHOOXkB2BJJU="/>
         </table:table>
     </page:list>
 </div>

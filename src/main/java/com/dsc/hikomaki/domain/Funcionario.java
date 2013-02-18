@@ -1,6 +1,10 @@
 package com.dsc.hikomaki.domain;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -12,7 +16,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
+@RooJpaActiveRecord(finders = { "findFuncionariosByMesas" })
 public class Funcionario {
 
     @NotNull
@@ -29,4 +33,7 @@ public class Funcionario {
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "M-")
     private Date dataNasc;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Mesa> mesas = new HashSet<Mesa>();
 }

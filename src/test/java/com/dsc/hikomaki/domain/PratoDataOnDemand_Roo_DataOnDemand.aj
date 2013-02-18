@@ -3,6 +3,7 @@
 
 package com.dsc.hikomaki.domain;
 
+import com.dsc.hikomaki.domain.MesaDataOnDemand;
 import com.dsc.hikomaki.domain.Prato;
 import com.dsc.hikomaki.domain.PratoDataOnDemand;
 import java.security.SecureRandom;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Random;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 privileged aspect PratoDataOnDemand_Roo_DataOnDemand {
@@ -21,6 +23,9 @@ privileged aspect PratoDataOnDemand_Roo_DataOnDemand {
     private Random PratoDataOnDemand.rnd = new SecureRandom();
     
     private List<Prato> PratoDataOnDemand.data;
+    
+    @Autowired
+    MesaDataOnDemand PratoDataOnDemand.mesaDataOnDemand;
     
     public Prato PratoDataOnDemand.getNewTransientPrato(int index) {
         Prato obj = new Prato();

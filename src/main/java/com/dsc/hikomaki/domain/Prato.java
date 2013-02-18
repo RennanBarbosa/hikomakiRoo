@@ -1,5 +1,6 @@
 package com.dsc.hikomaki.domain;
 
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
@@ -7,7 +8,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
+@RooJpaActiveRecord(finders = { "findPratoesByMesa" })
 public class Prato {
 
     @NotNull
@@ -18,4 +19,7 @@ public class Prato {
 
     @NotNull
     private Double preco;
+
+    @ManyToOne
+    private Mesa mesa;
 }

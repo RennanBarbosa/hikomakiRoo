@@ -6,5 +6,6 @@
         <field:input field="nome" id="c_com_dsc_hikomaki_domain_Prato_nome" required="true" z="jlR3rer20qz1lq7d0thxIpS691U="/>
         <field:input field="ingredientes" id="c_com_dsc_hikomaki_domain_Prato_ingredientes" required="true" z="PLalZrFOtT7Ub/nCjPu/5rfuBno="/>
         <field:input field="preco" id="c_com_dsc_hikomaki_domain_Prato_preco" required="true" validationMessageCode="field_invalid_number" z="YV0sErU2YCjf4beVyk5STmS327s="/>
+        <field:select field="mesa" id="c_com_dsc_hikomaki_domain_Prato_mesa" itemValue="id" items="${mesas}" path="/mesas" z="4j4uk+QjJFhZ+zeINCGl5c2mXvo="/>
     </form:update>
 </div>

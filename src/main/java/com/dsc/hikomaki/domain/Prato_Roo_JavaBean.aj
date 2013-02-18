@@ -3,6 +3,7 @@
 
 package com.dsc.hikomaki.domain;
 
+import com.dsc.hikomaki.domain.Mesa;
 import com.dsc.hikomaki.domain.Prato;
 
 privileged aspect Prato_Roo_JavaBean {
@@ -29,6 +30,14 @@ privileged aspect Prato_Roo_JavaBean {
     
     public void Prato.setPreco(Double preco) {
         this.preco = preco;
+    }
+    
+    public Mesa Prato.getMesa() {
+        return this.mesa;
+    }
+    
+    public void Prato.setMesa(Mesa mesa) {
+        this.mesa = mesa;
     }
     
 }
