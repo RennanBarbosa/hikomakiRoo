@@ -3,12 +3,14 @@
 
 package com.dsc.hikomaki.web;
 
-import com.dsc.hikomaki.domain.Mesa;
 import com.dsc.hikomaki.domain.Prato;
+import com.dsc.hikomaki.servico.MesaService;
+import com.dsc.hikomaki.servico.PratoService;
 import com.dsc.hikomaki.web.PratoController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +22,12 @@ import org.springframework.web.util.WebUtils;
 
 privileged aspect PratoController_Roo_Controller {
     
+    @Autowired
+    PratoService PratoController.pratoService;
+    
+    @Autowired
+    MesaService PratoController.mesaService;
+    
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String PratoController.create(@Valid Prato prato, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
@@ -27,7 +35,7 @@ privileged aspect PratoController_Roo_Controller {
             return "pratoes/create";
         }
         uiModel.asMap().clear();
-        prato.persist();
+        pratoService.savePrato(prato);
         return "redirect:/pratoes/" + encodeUrlPathSegment(prato.getId().toString(), httpServletRequest);
     }
     
@@ -39,7 +47,7 @@ privileged aspect PratoController_Roo_Controller {
     
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String PratoController.show(@PathVariable("id") Long id, Model uiModel) {
-        uiModel.addAttribute("prato", Prato.findPrato(id));
+        uiModel.addAttribute("prato", pratoService.findPrato(id));
         uiModel.addAttribute("itemId", id);
         return "pratoes/show";
     }
@@ -49,11 +57,11 @@ privileged aspect PratoController_Roo_Controller {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("pratoes", Prato.findPratoEntries(firstResult, sizeNo));
-            float nrOfPages = (float) Prato.countPratoes() / sizeNo;
+            uiModel.addAttribute("pratoes", pratoService.findPratoEntries(firstResult, sizeNo));
+            float nrOfPages = (float) pratoService.countAllPratoes() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("pratoes", Prato.findAllPratoes());
+            uiModel.addAttribute("pratoes", pratoService.findAllPratoes());
         }
         return "pratoes/list";
     }
@@ -65,20 +73,20 @@ privileged aspect PratoController_Roo_Controller {
             return "pratoes/update";
         }
         uiModel.asMap().clear();
-        prato.merge();
+        pratoService.updatePrato(prato);
         return "redirect:/pratoes/" + encodeUrlPathSegment(prato.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String PratoController.updateForm(@PathVariable("id") Long id, Model uiModel) {
-        populateEditForm(uiModel, Prato.findPrato(id));
+        populateEditForm(uiModel, pratoService.findPrato(id));
         return "pratoes/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
     public String PratoController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        Prato prato = Prato.findPrato(id);
-        prato.remove();
+        Prato prato = pratoService.findPrato(id);
+        pratoService.deletePrato(prato);
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
@@ -87,7 +95,7 @@ privileged aspect PratoController_Roo_Controller {
     
     void PratoController.populateEditForm(Model uiModel, Prato prato) {
         uiModel.addAttribute("prato", prato);
-        uiModel.addAttribute("mesas", Mesa.findAllMesas());
+        uiModel.addAttribute("mesas", mesaService.findAllMesas());
     }
     
     String PratoController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

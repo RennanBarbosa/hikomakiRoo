@@ -3,9 +3,9 @@
 
 package com.dsc.hikomaki.domain;
 
-import com.dsc.hikomaki.domain.Prato;
 import com.dsc.hikomaki.domain.PratoDataOnDemand;
 import com.dsc.hikomaki.domain.PratoIntegrationTest;
+import com.dsc.hikomaki.servico.PratoService;
 import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
@@ -26,10 +26,13 @@ privileged aspect PratoIntegrationTest_Roo_IntegrationTest {
     @Autowired
     PratoDataOnDemand PratoIntegrationTest.dod;
     
+    @Autowired
+    PratoService PratoIntegrationTest.pratoService;
+    
     @Test
-    public void PratoIntegrationTest.testCountPratoes() {
+    public void PratoIntegrationTest.testCountAllPratoes() {
         Assert.assertNotNull("Data on demand for 'Prato' failed to initialize correctly", dod.getRandomPrato());
-        long count = Prato.countPratoes();
+        long count = pratoService.countAllPratoes();
         Assert.assertTrue("Counter for 'Prato' incorrectly reported there were no entries", count > 0);
     }
     
@@ -39,7 +42,7 @@ privileged aspect PratoIntegrationTest_Roo_IntegrationTest {
         Assert.assertNotNull("Data on demand for 'Prato' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Prato' failed to provide an identifier", id);
-        obj = Prato.findPrato(id);
+        obj = pratoService.findPrato(id);
         Assert.assertNotNull("Find method for 'Prato' illegally returned null for id '" + id + "'", obj);
         Assert.assertEquals("Find method for 'Prato' returned the incorrect identifier", id, obj.getId());
     }
@@ -47,9 +50,9 @@ privileged aspect PratoIntegrationTest_Roo_IntegrationTest {
     @Test
     public void PratoIntegrationTest.testFindAllPratoes() {
         Assert.assertNotNull("Data on demand for 'Prato' failed to initialize correctly", dod.getRandomPrato());
-        long count = Prato.countPratoes();
+        long count = pratoService.countAllPratoes();
         Assert.assertTrue("Too expensive to perform a find all test for 'Prato', as there are " + count + " entries; set the findAllMaximum to exceed this value or set findAll=false on the integration test annotation to disable the test", count < 250);
-        List<Prato> result = Prato.findAllPratoes();
+        List<Prato> result = pratoService.findAllPratoes();
         Assert.assertNotNull("Find all method for 'Prato' illegally returned null", result);
         Assert.assertTrue("Find all method for 'Prato' failed to return any data", result.size() > 0);
     }
@@ -57,11 +60,11 @@ privileged aspect PratoIntegrationTest_Roo_IntegrationTest {
     @Test
     public void PratoIntegrationTest.testFindPratoEntries() {
         Assert.assertNotNull("Data on demand for 'Prato' failed to initialize correctly", dod.getRandomPrato());
-        long count = Prato.countPratoes();
+        long count = pratoService.countAllPratoes();
         if (count > 20) count = 20;
         int firstResult = 0;
         int maxResults = (int) count;
-        List<Prato> result = Prato.findPratoEntries(firstResult, maxResults);
+        List<Prato> result = pratoService.findPratoEntries(firstResult, maxResults);
         Assert.assertNotNull("Find entries method for 'Prato' illegally returned null", result);
         Assert.assertEquals("Find entries method for 'Prato' returned an incorrect number of entries", count, result.size());
     }
@@ -72,7 +75,7 @@ privileged aspect PratoIntegrationTest_Roo_IntegrationTest {
         Assert.assertNotNull("Data on demand for 'Prato' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Prato' failed to provide an identifier", id);
-        obj = Prato.findPrato(id);
+        obj = pratoService.findPrato(id);
         Assert.assertNotNull("Find method for 'Prato' illegally returned null for id '" + id + "'", obj);
         boolean modified =  dod.modifyPrato(obj);
         Integer currentVersion = obj.getVersion();
@@ -81,41 +84,41 @@ privileged aspect PratoIntegrationTest_Roo_IntegrationTest {
     }
     
     @Test
-    public void PratoIntegrationTest.testMergeUpdate() {
+    public void PratoIntegrationTest.testUpdatePratoUpdate() {
         Prato obj = dod.getRandomPrato();
         Assert.assertNotNull("Data on demand for 'Prato' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Prato' failed to provide an identifier", id);
-        obj = Prato.findPrato(id);
+        obj = pratoService.findPrato(id);
         boolean modified =  dod.modifyPrato(obj);
         Integer currentVersion = obj.getVersion();
-        Prato merged = obj.merge();
+        Prato merged = pratoService.updatePrato(obj);
         obj.flush();
         Assert.assertEquals("Identifier of merged object not the same as identifier of original object", merged.getId(), id);
         Assert.assertTrue("Version for 'Prato' failed to increment on merge and flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
     }
     
     @Test
-    public void PratoIntegrationTest.testPersist() {
+    public void PratoIntegrationTest.testSavePrato() {
         Assert.assertNotNull("Data on demand for 'Prato' failed to initialize correctly", dod.getRandomPrato());
         Prato obj = dod.getNewTransientPrato(Integer.MAX_VALUE);
         Assert.assertNotNull("Data on demand for 'Prato' failed to provide a new transient entity", obj);
         Assert.assertNull("Expected 'Prato' identifier to be null", obj.getId());
-        obj.persist();
+        pratoService.savePrato(obj);
         obj.flush();
         Assert.assertNotNull("Expected 'Prato' identifier to no longer be null", obj.getId());
     }
     
     @Test
-    public void PratoIntegrationTest.testRemove() {
+    public void PratoIntegrationTest.testDeletePrato() {
         Prato obj = dod.getRandomPrato();
         Assert.assertNotNull("Data on demand for 'Prato' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Prato' failed to provide an identifier", id);
-        obj = Prato.findPrato(id);
-        obj.remove();
+        obj = pratoService.findPrato(id);
+        pratoService.deletePrato(obj);
         obj.flush();
-        Assert.assertNull("Failed to remove 'Prato' with identifier '" + id + "'", Prato.findPrato(id));
+        Assert.assertNull("Failed to remove 'Prato' with identifier '" + id + "'", pratoService.findPrato(id));
     }
     
 }

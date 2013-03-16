@@ -4,12 +4,14 @@
 package com.dsc.hikomaki.web;
 
 import com.dsc.hikomaki.domain.Funcionario;
-import com.dsc.hikomaki.domain.Mesa;
+import com.dsc.hikomaki.servico.FuncionarioService;
+import com.dsc.hikomaki.servico.MesaService;
 import com.dsc.hikomaki.web.FuncionarioController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.joda.time.format.DateTimeFormat;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +24,12 @@ import org.springframework.web.util.WebUtils;
 
 privileged aspect FuncionarioController_Roo_Controller {
     
+    @Autowired
+    FuncionarioService FuncionarioController.funcionarioService;
+    
+    @Autowired
+    MesaService FuncionarioController.mesaService;
+    
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String FuncionarioController.create(@Valid Funcionario funcionario, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
@@ -29,7 +37,7 @@ privileged aspect FuncionarioController_Roo_Controller {
             return "funcionarios/create";
         }
         uiModel.asMap().clear();
-        funcionario.persist();
+        funcionarioService.saveFuncionario(funcionario);
         return "redirect:/funcionarios/" + encodeUrlPathSegment(funcionario.getId().toString(), httpServletRequest);
     }
     
@@ -42,7 +50,7 @@ privileged aspect FuncionarioController_Roo_Controller {
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String FuncionarioController.show(@PathVariable("id") Long id, Model uiModel) {
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("funcionario", Funcionario.findFuncionario(id));
+        uiModel.addAttribute("funcionario", funcionarioService.findFuncionario(id));
         uiModel.addAttribute("itemId", id);
         return "funcionarios/show";
     }
@@ -52,11 +60,11 @@ privileged aspect FuncionarioController_Roo_Controller {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("funcionarios", Funcionario.findFuncionarioEntries(firstResult, sizeNo));
-            float nrOfPages = (float) Funcionario.countFuncionarios() / sizeNo;
+            uiModel.addAttribute("funcionarios", funcionarioService.findFuncionarioEntries(firstResult, sizeNo));
+            float nrOfPages = (float) funcionarioService.countAllFuncionarios() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("funcionarios", Funcionario.findAllFuncionarios());
+            uiModel.addAttribute("funcionarios", funcionarioService.findAllFuncionarios());
         }
         addDateTimeFormatPatterns(uiModel);
         return "funcionarios/list";
@@ -69,20 +77,20 @@ privileged aspect FuncionarioController_Roo_Controller {
             return "funcionarios/update";
         }
         uiModel.asMap().clear();
-        funcionario.merge();
+        funcionarioService.updateFuncionario(funcionario);
         return "redirect:/funcionarios/" + encodeUrlPathSegment(funcionario.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String FuncionarioController.updateForm(@PathVariable("id") Long id, Model uiModel) {
-        populateEditForm(uiModel, Funcionario.findFuncionario(id));
+        populateEditForm(uiModel, funcionarioService.findFuncionario(id));
         return "funcionarios/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
     public String FuncionarioController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        Funcionario funcionario = Funcionario.findFuncionario(id);
-        funcionario.remove();
+        Funcionario funcionario = funcionarioService.findFuncionario(id);
+        funcionarioService.deleteFuncionario(funcionario);
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
@@ -96,7 +104,7 @@ privileged aspect FuncionarioController_Roo_Controller {
     void FuncionarioController.populateEditForm(Model uiModel, Funcionario funcionario) {
         uiModel.addAttribute("funcionario", funcionario);
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("mesas", Mesa.findAllMesas());
+        uiModel.addAttribute("mesas", mesaService.findAllMesas());
     }
     
     String FuncionarioController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

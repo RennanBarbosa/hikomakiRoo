@@ -6,7 +6,11 @@ package com.dsc.hikomaki.web;
 import com.dsc.hikomaki.domain.Funcionario;
 import com.dsc.hikomaki.domain.Mesa;
 import com.dsc.hikomaki.domain.Prato;
+import com.dsc.hikomaki.servico.FuncionarioService;
+import com.dsc.hikomaki.servico.MesaService;
+import com.dsc.hikomaki.servico.PratoService;
 import com.dsc.hikomaki.web.ApplicationConversionServiceFactoryBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.FormatterRegistry;
@@ -14,6 +18,15 @@ import org.springframework.format.FormatterRegistry;
 privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService {
     
     declare @type: ApplicationConversionServiceFactoryBean: @Configurable;
+    
+    @Autowired
+    FuncionarioService ApplicationConversionServiceFactoryBean.funcionarioService;
+    
+    @Autowired
+    MesaService ApplicationConversionServiceFactoryBean.mesaService;
+    
+    @Autowired
+    PratoService ApplicationConversionServiceFactoryBean.pratoService;
     
     public Converter<Funcionario, String> ApplicationConversionServiceFactoryBean.getFuncionarioToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.dsc.hikomaki.domain.Funcionario, java.lang.String>() {
@@ -26,7 +39,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Long, Funcionario> ApplicationConversionServiceFactoryBean.getIdToFuncionarioConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.dsc.hikomaki.domain.Funcionario>() {
             public com.dsc.hikomaki.domain.Funcionario convert(java.lang.Long id) {
-                return Funcionario.findFuncionario(id);
+                return funcionarioService.findFuncionario(id);
             }
         };
     }
@@ -50,7 +63,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Long, Mesa> ApplicationConversionServiceFactoryBean.getIdToMesaConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.dsc.hikomaki.domain.Mesa>() {
             public com.dsc.hikomaki.domain.Mesa convert(java.lang.Long id) {
-                return Mesa.findMesa(id);
+                return mesaService.findMesa(id);
             }
         };
     }
@@ -74,7 +87,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Long, Prato> ApplicationConversionServiceFactoryBean.getIdToPratoConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.dsc.hikomaki.domain.Prato>() {
             public com.dsc.hikomaki.domain.Prato convert(java.lang.Long id) {
-                return Prato.findPrato(id);
+                return pratoService.findPrato(id);
             }
         };
     }

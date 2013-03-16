@@ -5,6 +5,7 @@ package com.dsc.hikomaki.domain;
 
 import com.dsc.hikomaki.domain.Funcionario;
 import com.dsc.hikomaki.domain.FuncionarioDataOnDemand;
+import com.dsc.hikomaki.servico.FuncionarioService;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Random;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 privileged aspect FuncionarioDataOnDemand_Roo_DataOnDemand {
@@ -22,6 +24,9 @@ privileged aspect FuncionarioDataOnDemand_Roo_DataOnDemand {
     private Random FuncionarioDataOnDemand.rnd = new SecureRandom();
     
     private List<Funcionario> FuncionarioDataOnDemand.data;
+    
+    @Autowired
+    FuncionarioService FuncionarioDataOnDemand.funcionarioService;
     
     public Funcionario FuncionarioDataOnDemand.getNewTransientFuncionario(int index) {
         Funcionario obj = new Funcionario();
@@ -62,14 +67,14 @@ privileged aspect FuncionarioDataOnDemand_Roo_DataOnDemand {
         }
         Funcionario obj = data.get(index);
         Long id = obj.getId();
-        return Funcionario.findFuncionario(id);
+        return funcionarioService.findFuncionario(id);
     }
     
     public Funcionario FuncionarioDataOnDemand.getRandomFuncionario() {
         init();
         Funcionario obj = data.get(rnd.nextInt(data.size()));
         Long id = obj.getId();
-        return Funcionario.findFuncionario(id);
+        return funcionarioService.findFuncionario(id);
     }
     
     public boolean FuncionarioDataOnDemand.modifyFuncionario(Funcionario obj) {
@@ -79,7 +84,7 @@ privileged aspect FuncionarioDataOnDemand_Roo_DataOnDemand {
     public void FuncionarioDataOnDemand.init() {
         int from = 0;
         int to = 10;
-        data = Funcionario.findFuncionarioEntries(from, to);
+        data = funcionarioService.findFuncionarioEntries(from, to);
         if (data == null) {
             throw new IllegalStateException("Find entries implementation for 'Funcionario' illegally returned null");
         }
@@ -91,7 +96,7 @@ privileged aspect FuncionarioDataOnDemand_Roo_DataOnDemand {
         for (int i = 0; i < 10; i++) {
             Funcionario obj = getNewTransientFuncionario(i);
             try {
-                obj.persist();
+                funcionarioService.saveFuncionario(obj);
             } catch (ConstraintViolationException e) {
                 StringBuilder msg = new StringBuilder();
                 for (Iterator<ConstraintViolation<?>> iter = e.getConstraintViolations().iterator(); iter.hasNext();) {

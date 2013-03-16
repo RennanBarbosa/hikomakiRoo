@@ -3,13 +3,15 @@
 
 package com.dsc.hikomaki.web;
 
-import com.dsc.hikomaki.domain.Funcionario;
 import com.dsc.hikomaki.domain.Mesa;
-import com.dsc.hikomaki.domain.Prato;
+import com.dsc.hikomaki.servico.FuncionarioService;
+import com.dsc.hikomaki.servico.MesaService;
+import com.dsc.hikomaki.servico.PratoService;
 import com.dsc.hikomaki.web.MesaController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +23,15 @@ import org.springframework.web.util.WebUtils;
 
 privileged aspect MesaController_Roo_Controller {
     
+    @Autowired
+    MesaService MesaController.mesaService;
+    
+    @Autowired
+    FuncionarioService MesaController.funcionarioService;
+    
+    @Autowired
+    PratoService MesaController.pratoService;
+    
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String MesaController.create(@Valid Mesa mesa, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
@@ -28,7 +39,7 @@ privileged aspect MesaController_Roo_Controller {
             return "mesas/create";
         }
         uiModel.asMap().clear();
-        mesa.persist();
+        mesaService.saveMesa(mesa);
         return "redirect:/mesas/" + encodeUrlPathSegment(mesa.getId().toString(), httpServletRequest);
     }
     
@@ -40,7 +51,7 @@ privileged aspect MesaController_Roo_Controller {
     
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String MesaController.show(@PathVariable("id") Long id, Model uiModel) {
-        uiModel.addAttribute("mesa", Mesa.findMesa(id));
+        uiModel.addAttribute("mesa", mesaService.findMesa(id));
         uiModel.addAttribute("itemId", id);
         return "mesas/show";
     }
@@ -50,11 +61,11 @@ privileged aspect MesaController_Roo_Controller {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("mesas", Mesa.findMesaEntries(firstResult, sizeNo));
-            float nrOfPages = (float) Mesa.countMesas() / sizeNo;
+            uiModel.addAttribute("mesas", mesaService.findMesaEntries(firstResult, sizeNo));
+            float nrOfPages = (float) mesaService.countAllMesas() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("mesas", Mesa.findAllMesas());
+            uiModel.addAttribute("mesas", mesaService.findAllMesas());
         }
         return "mesas/list";
     }
@@ -66,20 +77,20 @@ privileged aspect MesaController_Roo_Controller {
             return "mesas/update";
         }
         uiModel.asMap().clear();
-        mesa.merge();
+        mesaService.updateMesa(mesa);
         return "redirect:/mesas/" + encodeUrlPathSegment(mesa.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String MesaController.updateForm(@PathVariable("id") Long id, Model uiModel) {
-        populateEditForm(uiModel, Mesa.findMesa(id));
+        populateEditForm(uiModel, mesaService.findMesa(id));
         return "mesas/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
     public String MesaController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        Mesa mesa = Mesa.findMesa(id);
-        mesa.remove();
+        Mesa mesa = mesaService.findMesa(id);
+        mesaService.deleteMesa(mesa);
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
@@ -88,8 +99,8 @@ privileged aspect MesaController_Roo_Controller {
     
     void MesaController.populateEditForm(Model uiModel, Mesa mesa) {
         uiModel.addAttribute("mesa", mesa);
-        uiModel.addAttribute("funcionarios", Funcionario.findAllFuncionarios());
-        uiModel.addAttribute("pratoes", Prato.findAllPratoes());
+        uiModel.addAttribute("funcionarios", funcionarioService.findAllFuncionarios());
+        uiModel.addAttribute("pratoes", pratoService.findAllPratoes());
     }
     
     String MesaController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

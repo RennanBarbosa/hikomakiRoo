@@ -6,6 +6,7 @@ package com.dsc.hikomaki.domain;
 import com.dsc.hikomaki.domain.FuncionarioDataOnDemand;
 import com.dsc.hikomaki.domain.Mesa;
 import com.dsc.hikomaki.domain.MesaDataOnDemand;
+import com.dsc.hikomaki.servico.MesaService;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -26,6 +27,9 @@ privileged aspect MesaDataOnDemand_Roo_DataOnDemand {
     
     @Autowired
     FuncionarioDataOnDemand MesaDataOnDemand.funcionarioDataOnDemand;
+    
+    @Autowired
+    MesaService MesaDataOnDemand.mesaService;
     
     public Mesa MesaDataOnDemand.getNewTransientMesa(int index) {
         Mesa obj = new Mesa();
@@ -48,14 +52,14 @@ privileged aspect MesaDataOnDemand_Roo_DataOnDemand {
         }
         Mesa obj = data.get(index);
         Long id = obj.getId();
-        return Mesa.findMesa(id);
+        return mesaService.findMesa(id);
     }
     
     public Mesa MesaDataOnDemand.getRandomMesa() {
         init();
         Mesa obj = data.get(rnd.nextInt(data.size()));
         Long id = obj.getId();
-        return Mesa.findMesa(id);
+        return mesaService.findMesa(id);
     }
     
     public boolean MesaDataOnDemand.modifyMesa(Mesa obj) {
@@ -65,7 +69,7 @@ privileged aspect MesaDataOnDemand_Roo_DataOnDemand {
     public void MesaDataOnDemand.init() {
         int from = 0;
         int to = 10;
-        data = Mesa.findMesaEntries(from, to);
+        data = mesaService.findMesaEntries(from, to);
         if (data == null) {
             throw new IllegalStateException("Find entries implementation for 'Mesa' illegally returned null");
         }
@@ -77,7 +81,7 @@ privileged aspect MesaDataOnDemand_Roo_DataOnDemand {
         for (int i = 0; i < 10; i++) {
             Mesa obj = getNewTransientMesa(i);
             try {
-                obj.persist();
+                mesaService.saveMesa(obj);
             } catch (ConstraintViolationException e) {
                 StringBuilder msg = new StringBuilder();
                 for (Iterator<ConstraintViolation<?>> iter = e.getConstraintViolations().iterator(); iter.hasNext();) {

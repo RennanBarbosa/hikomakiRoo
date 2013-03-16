@@ -3,9 +3,9 @@
 
 package com.dsc.hikomaki.domain;
 
-import com.dsc.hikomaki.domain.Funcionario;
 import com.dsc.hikomaki.domain.FuncionarioDataOnDemand;
 import com.dsc.hikomaki.domain.FuncionarioIntegrationTest;
+import com.dsc.hikomaki.servico.FuncionarioService;
 import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
@@ -26,10 +26,13 @@ privileged aspect FuncionarioIntegrationTest_Roo_IntegrationTest {
     @Autowired
     FuncionarioDataOnDemand FuncionarioIntegrationTest.dod;
     
+    @Autowired
+    FuncionarioService FuncionarioIntegrationTest.funcionarioService;
+    
     @Test
-    public void FuncionarioIntegrationTest.testCountFuncionarios() {
+    public void FuncionarioIntegrationTest.testCountAllFuncionarios() {
         Assert.assertNotNull("Data on demand for 'Funcionario' failed to initialize correctly", dod.getRandomFuncionario());
-        long count = Funcionario.countFuncionarios();
+        long count = funcionarioService.countAllFuncionarios();
         Assert.assertTrue("Counter for 'Funcionario' incorrectly reported there were no entries", count > 0);
     }
     
@@ -39,7 +42,7 @@ privileged aspect FuncionarioIntegrationTest_Roo_IntegrationTest {
         Assert.assertNotNull("Data on demand for 'Funcionario' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Funcionario' failed to provide an identifier", id);
-        obj = Funcionario.findFuncionario(id);
+        obj = funcionarioService.findFuncionario(id);
         Assert.assertNotNull("Find method for 'Funcionario' illegally returned null for id '" + id + "'", obj);
         Assert.assertEquals("Find method for 'Funcionario' returned the incorrect identifier", id, obj.getId());
     }
@@ -47,9 +50,9 @@ privileged aspect FuncionarioIntegrationTest_Roo_IntegrationTest {
     @Test
     public void FuncionarioIntegrationTest.testFindAllFuncionarios() {
         Assert.assertNotNull("Data on demand for 'Funcionario' failed to initialize correctly", dod.getRandomFuncionario());
-        long count = Funcionario.countFuncionarios();
+        long count = funcionarioService.countAllFuncionarios();
         Assert.assertTrue("Too expensive to perform a find all test for 'Funcionario', as there are " + count + " entries; set the findAllMaximum to exceed this value or set findAll=false on the integration test annotation to disable the test", count < 250);
-        List<Funcionario> result = Funcionario.findAllFuncionarios();
+        List<Funcionario> result = funcionarioService.findAllFuncionarios();
         Assert.assertNotNull("Find all method for 'Funcionario' illegally returned null", result);
         Assert.assertTrue("Find all method for 'Funcionario' failed to return any data", result.size() > 0);
     }
@@ -57,11 +60,11 @@ privileged aspect FuncionarioIntegrationTest_Roo_IntegrationTest {
     @Test
     public void FuncionarioIntegrationTest.testFindFuncionarioEntries() {
         Assert.assertNotNull("Data on demand for 'Funcionario' failed to initialize correctly", dod.getRandomFuncionario());
-        long count = Funcionario.countFuncionarios();
+        long count = funcionarioService.countAllFuncionarios();
         if (count > 20) count = 20;
         int firstResult = 0;
         int maxResults = (int) count;
-        List<Funcionario> result = Funcionario.findFuncionarioEntries(firstResult, maxResults);
+        List<Funcionario> result = funcionarioService.findFuncionarioEntries(firstResult, maxResults);
         Assert.assertNotNull("Find entries method for 'Funcionario' illegally returned null", result);
         Assert.assertEquals("Find entries method for 'Funcionario' returned an incorrect number of entries", count, result.size());
     }
@@ -72,7 +75,7 @@ privileged aspect FuncionarioIntegrationTest_Roo_IntegrationTest {
         Assert.assertNotNull("Data on demand for 'Funcionario' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Funcionario' failed to provide an identifier", id);
-        obj = Funcionario.findFuncionario(id);
+        obj = funcionarioService.findFuncionario(id);
         Assert.assertNotNull("Find method for 'Funcionario' illegally returned null for id '" + id + "'", obj);
         boolean modified =  dod.modifyFuncionario(obj);
         Integer currentVersion = obj.getVersion();
@@ -81,41 +84,41 @@ privileged aspect FuncionarioIntegrationTest_Roo_IntegrationTest {
     }
     
     @Test
-    public void FuncionarioIntegrationTest.testMergeUpdate() {
+    public void FuncionarioIntegrationTest.testUpdateFuncionarioUpdate() {
         Funcionario obj = dod.getRandomFuncionario();
         Assert.assertNotNull("Data on demand for 'Funcionario' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Funcionario' failed to provide an identifier", id);
-        obj = Funcionario.findFuncionario(id);
+        obj = funcionarioService.findFuncionario(id);
         boolean modified =  dod.modifyFuncionario(obj);
         Integer currentVersion = obj.getVersion();
-        Funcionario merged = obj.merge();
+        Funcionario merged = funcionarioService.updateFuncionario(obj);
         obj.flush();
         Assert.assertEquals("Identifier of merged object not the same as identifier of original object", merged.getId(), id);
         Assert.assertTrue("Version for 'Funcionario' failed to increment on merge and flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
     }
     
     @Test
-    public void FuncionarioIntegrationTest.testPersist() {
+    public void FuncionarioIntegrationTest.testSaveFuncionario() {
         Assert.assertNotNull("Data on demand for 'Funcionario' failed to initialize correctly", dod.getRandomFuncionario());
         Funcionario obj = dod.getNewTransientFuncionario(Integer.MAX_VALUE);
         Assert.assertNotNull("Data on demand for 'Funcionario' failed to provide a new transient entity", obj);
         Assert.assertNull("Expected 'Funcionario' identifier to be null", obj.getId());
-        obj.persist();
+        funcionarioService.saveFuncionario(obj);
         obj.flush();
         Assert.assertNotNull("Expected 'Funcionario' identifier to no longer be null", obj.getId());
     }
     
     @Test
-    public void FuncionarioIntegrationTest.testRemove() {
+    public void FuncionarioIntegrationTest.testDeleteFuncionario() {
         Funcionario obj = dod.getRandomFuncionario();
         Assert.assertNotNull("Data on demand for 'Funcionario' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Funcionario' failed to provide an identifier", id);
-        obj = Funcionario.findFuncionario(id);
-        obj.remove();
+        obj = funcionarioService.findFuncionario(id);
+        funcionarioService.deleteFuncionario(obj);
         obj.flush();
-        Assert.assertNull("Failed to remove 'Funcionario' with identifier '" + id + "'", Funcionario.findFuncionario(id));
+        Assert.assertNull("Failed to remove 'Funcionario' with identifier '" + id + "'", funcionarioService.findFuncionario(id));
     }
     
 }

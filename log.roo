@@ -98,3 +98,31 @@ finder add --finderName findFuncionariosByMesas
 perform test
 perform test
 perform test
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-03-16 11:35:49
+hint
+q
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-03-16 11:36:26
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-03-16 11:38:01
+q
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-03-16 13:05:55
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-03-16 14:01:52
+hint
+hint class
+help
+// [failed] json add --class ~.modelo.Prato
+hint focus
+hint foco
+json add --class ~.domain.Prato
+help
+help web mvc json steup
+json add --class ~.domain.Mesa
+json add --class ~.domain.Funcionario
+service --interface ~.servico.PratoService --entity ~.domain.Prato
+service --interface ~.servico.MesaService --entity ~.domain.Mesa
+service --interface ~.servico.FuncionarioService --entity ~.domain.Funcionario
+web mvc json all
+q
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-03-16 14:18:12
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-03-16 14:22:52
+q
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-03-16 14:23:00

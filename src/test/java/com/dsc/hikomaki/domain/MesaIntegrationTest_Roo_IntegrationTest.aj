@@ -3,9 +3,9 @@
 
 package com.dsc.hikomaki.domain;
 
-import com.dsc.hikomaki.domain.Mesa;
 import com.dsc.hikomaki.domain.MesaDataOnDemand;
 import com.dsc.hikomaki.domain.MesaIntegrationTest;
+import com.dsc.hikomaki.servico.MesaService;
 import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
@@ -26,10 +26,13 @@ privileged aspect MesaIntegrationTest_Roo_IntegrationTest {
     @Autowired
     MesaDataOnDemand MesaIntegrationTest.dod;
     
+    @Autowired
+    MesaService MesaIntegrationTest.mesaService;
+    
     @Test
-    public void MesaIntegrationTest.testCountMesas() {
+    public void MesaIntegrationTest.testCountAllMesas() {
         Assert.assertNotNull("Data on demand for 'Mesa' failed to initialize correctly", dod.getRandomMesa());
-        long count = Mesa.countMesas();
+        long count = mesaService.countAllMesas();
         Assert.assertTrue("Counter for 'Mesa' incorrectly reported there were no entries", count > 0);
     }
     
@@ -39,7 +42,7 @@ privileged aspect MesaIntegrationTest_Roo_IntegrationTest {
         Assert.assertNotNull("Data on demand for 'Mesa' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Mesa' failed to provide an identifier", id);
-        obj = Mesa.findMesa(id);
+        obj = mesaService.findMesa(id);
         Assert.assertNotNull("Find method for 'Mesa' illegally returned null for id '" + id + "'", obj);
         Assert.assertEquals("Find method for 'Mesa' returned the incorrect identifier", id, obj.getId());
     }
@@ -47,9 +50,9 @@ privileged aspect MesaIntegrationTest_Roo_IntegrationTest {
     @Test
     public void MesaIntegrationTest.testFindAllMesas() {
         Assert.assertNotNull("Data on demand for 'Mesa' failed to initialize correctly", dod.getRandomMesa());
-        long count = Mesa.countMesas();
+        long count = mesaService.countAllMesas();
         Assert.assertTrue("Too expensive to perform a find all test for 'Mesa', as there are " + count + " entries; set the findAllMaximum to exceed this value or set findAll=false on the integration test annotation to disable the test", count < 250);
-        List<Mesa> result = Mesa.findAllMesas();
+        List<Mesa> result = mesaService.findAllMesas();
         Assert.assertNotNull("Find all method for 'Mesa' illegally returned null", result);
         Assert.assertTrue("Find all method for 'Mesa' failed to return any data", result.size() > 0);
     }
@@ -57,11 +60,11 @@ privileged aspect MesaIntegrationTest_Roo_IntegrationTest {
     @Test
     public void MesaIntegrationTest.testFindMesaEntries() {
         Assert.assertNotNull("Data on demand for 'Mesa' failed to initialize correctly", dod.getRandomMesa());
-        long count = Mesa.countMesas();
+        long count = mesaService.countAllMesas();
         if (count > 20) count = 20;
         int firstResult = 0;
         int maxResults = (int) count;
-        List<Mesa> result = Mesa.findMesaEntries(firstResult, maxResults);
+        List<Mesa> result = mesaService.findMesaEntries(firstResult, maxResults);
         Assert.assertNotNull("Find entries method for 'Mesa' illegally returned null", result);
         Assert.assertEquals("Find entries method for 'Mesa' returned an incorrect number of entries", count, result.size());
     }
@@ -72,7 +75,7 @@ privileged aspect MesaIntegrationTest_Roo_IntegrationTest {
         Assert.assertNotNull("Data on demand for 'Mesa' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Mesa' failed to provide an identifier", id);
-        obj = Mesa.findMesa(id);
+        obj = mesaService.findMesa(id);
         Assert.assertNotNull("Find method for 'Mesa' illegally returned null for id '" + id + "'", obj);
         boolean modified =  dod.modifyMesa(obj);
         Integer currentVersion = obj.getVersion();
@@ -81,41 +84,41 @@ privileged aspect MesaIntegrationTest_Roo_IntegrationTest {
     }
     
     @Test
-    public void MesaIntegrationTest.testMergeUpdate() {
+    public void MesaIntegrationTest.testUpdateMesaUpdate() {
         Mesa obj = dod.getRandomMesa();
         Assert.assertNotNull("Data on demand for 'Mesa' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Mesa' failed to provide an identifier", id);
-        obj = Mesa.findMesa(id);
+        obj = mesaService.findMesa(id);
         boolean modified =  dod.modifyMesa(obj);
         Integer currentVersion = obj.getVersion();
-        Mesa merged = obj.merge();
+        Mesa merged = mesaService.updateMesa(obj);
         obj.flush();
         Assert.assertEquals("Identifier of merged object not the same as identifier of original object", merged.getId(), id);
         Assert.assertTrue("Version for 'Mesa' failed to increment on merge and flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
     }
     
     @Test
-    public void MesaIntegrationTest.testPersist() {
+    public void MesaIntegrationTest.testSaveMesa() {
         Assert.assertNotNull("Data on demand for 'Mesa' failed to initialize correctly", dod.getRandomMesa());
         Mesa obj = dod.getNewTransientMesa(Integer.MAX_VALUE);
         Assert.assertNotNull("Data on demand for 'Mesa' failed to provide a new transient entity", obj);
         Assert.assertNull("Expected 'Mesa' identifier to be null", obj.getId());
-        obj.persist();
+        mesaService.saveMesa(obj);
         obj.flush();
         Assert.assertNotNull("Expected 'Mesa' identifier to no longer be null", obj.getId());
     }
     
     @Test
-    public void MesaIntegrationTest.testRemove() {
+    public void MesaIntegrationTest.testDeleteMesa() {
         Mesa obj = dod.getRandomMesa();
         Assert.assertNotNull("Data on demand for 'Mesa' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Mesa' failed to provide an identifier", id);
-        obj = Mesa.findMesa(id);
-        obj.remove();
+        obj = mesaService.findMesa(id);
+        mesaService.deleteMesa(obj);
         obj.flush();
-        Assert.assertNull("Failed to remove 'Mesa' with identifier '" + id + "'", Mesa.findMesa(id));
+        Assert.assertNull("Failed to remove 'Mesa' with identifier '" + id + "'", mesaService.findMesa(id));
     }
     
 }

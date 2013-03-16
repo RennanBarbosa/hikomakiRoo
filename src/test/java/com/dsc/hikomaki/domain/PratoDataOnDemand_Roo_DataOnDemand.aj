@@ -6,6 +6,7 @@ package com.dsc.hikomaki.domain;
 import com.dsc.hikomaki.domain.MesaDataOnDemand;
 import com.dsc.hikomaki.domain.Prato;
 import com.dsc.hikomaki.domain.PratoDataOnDemand;
+import com.dsc.hikomaki.servico.PratoService;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -26,6 +27,9 @@ privileged aspect PratoDataOnDemand_Roo_DataOnDemand {
     
     @Autowired
     MesaDataOnDemand PratoDataOnDemand.mesaDataOnDemand;
+    
+    @Autowired
+    PratoService PratoDataOnDemand.pratoService;
     
     public Prato PratoDataOnDemand.getNewTransientPrato(int index) {
         Prato obj = new Prato();
@@ -60,14 +64,14 @@ privileged aspect PratoDataOnDemand_Roo_DataOnDemand {
         }
         Prato obj = data.get(index);
         Long id = obj.getId();
-        return Prato.findPrato(id);
+        return pratoService.findPrato(id);
     }
     
     public Prato PratoDataOnDemand.getRandomPrato() {
         init();
         Prato obj = data.get(rnd.nextInt(data.size()));
         Long id = obj.getId();
-        return Prato.findPrato(id);
+        return pratoService.findPrato(id);
     }
     
     public boolean PratoDataOnDemand.modifyPrato(Prato obj) {
@@ -77,7 +81,7 @@ privileged aspect PratoDataOnDemand_Roo_DataOnDemand {
     public void PratoDataOnDemand.init() {
         int from = 0;
         int to = 10;
-        data = Prato.findPratoEntries(from, to);
+        data = pratoService.findPratoEntries(from, to);
         if (data == null) {
             throw new IllegalStateException("Find entries implementation for 'Prato' illegally returned null");
         }
@@ -89,7 +93,7 @@ privileged aspect PratoDataOnDemand_Roo_DataOnDemand {
         for (int i = 0; i < 10; i++) {
             Prato obj = getNewTransientPrato(i);
             try {
-                obj.persist();
+                pratoService.savePrato(obj);
             } catch (ConstraintViolationException e) {
                 StringBuilder msg = new StringBuilder();
                 for (Iterator<ConstraintViolation<?>> iter = e.getConstraintViolations().iterator(); iter.hasNext();) {
