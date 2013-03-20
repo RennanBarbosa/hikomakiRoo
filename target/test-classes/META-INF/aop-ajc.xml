@@ -3,8 +3,8 @@
 <aspect name="com.dsc.hikomaki.domain.FuncionarioDataOnDemand_Roo_DataOnDemand"/>
 <aspect name="com.dsc.hikomaki.domain.PratoDataOnDemand_Roo_DataOnDemand"/>
 <aspect name="com.dsc.hikomaki.domain.MesaIntegrationTest_Roo_IntegrationTest"/>
-<aspect name="com.dsc.hikomaki.domain.PratoDataOnDemand_Roo_Configurable"/>
 <aspect name="com.dsc.hikomaki.domain.FuncionarioDataOnDemand_Roo_Configurable"/>
+<aspect name="com.dsc.hikomaki.domain.PratoDataOnDemand_Roo_Configurable"/>
 <aspect name="com.dsc.hikomaki.domain.PratoIntegrationTest_Roo_IntegrationTest"/>
 <aspect name="com.dsc.hikomaki.domain.MesaDataOnDemand_Roo_Configurable"/>
 <aspect name="com.dsc.hikomaki.domain.FuncionarioIntegrationTest_Roo_Configurable"/>
