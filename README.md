@@ -1,10 +1,12 @@
-Projeto Spring - ROO Hokomaki Gami
+Projeto Spring ROO - Sistema de atendimento em restaurantes.
 
-Entidades:
-Prato, Mesa e funcionario.
+Entidades: <br>
+Prato, Mesa e Funcionario.
 
-Rodando: mvn jetty:run
-http://localhost:8080/hikomki-gami
+Instruções para executar o projeto:
 
-Pasta para recursos estaticos:
-src> main> static
+(1) Primeiramente suba o servidor: mvn jetty:run <br>
+(2) Em seguida, para acessar a página digite no seu browser: http://localhost:8080/hikomki-gami
+
+Pasta para recursos estaticos: <br>
+src > main > static
