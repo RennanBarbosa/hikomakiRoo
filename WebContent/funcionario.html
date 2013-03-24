@@ -23,8 +23,8 @@
   					<div class="navbar-inner">
     					<a class="brand" href="#"></a>
     					<ul class="nav">
-      						<li class="active"><a href="#">Home</a></li>
-      						<li><a href="funcionario.html">Funcionário</a></li>
+      						<li><a href="index.html">Home</a></li>
+      						<li class="active"><a href="funcionario.html">Funcionário</a></li>
       						<li><a href="#">Pratos</a></li>
       						<li><a href="#">Mesas</a></li>
     					</ul>
@@ -39,9 +39,56 @@
   				<strong>Sucesso!</strong> O cadastro foi realizado corretamente.
 			</div>
         	-->
+
+        <form class="form-horizontal">
+  			<div class="control-group">
+    			<label class="control-label" for="nome">Nome</label>
+    			<div class="controls">
+      				<input type="text" placeholder="Nome" id="nome">
+    			</div>
+ 		 	</div>
+  			<div class="control-group">
+    			<label class="control-label" for="tel">Telefone</label>
+    			<div class="controls">
+      				<input type="text" placeholder="(83)1234-1234" id="tel">
+    			</div>
+ 		 	</div>
+ 		 	<div class="control-group">
+    			<label class="control-label" for="turno">Turno</label>
+    			<div class="controls">
+      				<input type="text" placeholder="Manhã" id="turno">
+    			</div>
+ 		 	</div>
+ 		 	<div class="control-group">
+    			<label class="control-label" for="data">Data Nascimento</label>
+    			<div class="controls">
+      				<input type="text" placeholder="01/01/1991" id="data">
+    			</div>
+ 		 	</div>
+  			</div>
+  				<div class="form-actions">
+  					<button class="btn btn-primary" id="butpost">Post</button>
+				</div>
+  			</div>
+		</form>
+
+		<br/>
+
         	<button id="butget">GET Funcionarios</button>
+
             <div id="main">
             </div>
+
+        <br/>    
+            <table id="tabela" border="1">
+        		<tr>
+        			<th>Nome</th>
+        			<th>Telefone</th>
+        			<th>Turno</th>
+        		</tr>
+        	</table>
+
+
         </section>
 	 	<footer>
             <div class="navbar">
