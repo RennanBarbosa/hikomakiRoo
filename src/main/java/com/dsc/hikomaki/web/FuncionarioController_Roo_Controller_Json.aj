@@ -5,9 +5,11 @@ package com.dsc.hikomaki.web;
 
 import com.dsc.hikomaki.domain.Funcionario;
 import com.dsc.hikomaki.domain.Mesa;
+import com.dsc.hikomaki.servico.FuncionarioService;
 import com.dsc.hikomaki.web.FuncionarioController;
 import java.util.List;
 import java.util.Set;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 privileged aspect FuncionarioController_Roo_Controller_Json {
+    
+    @Autowired
+    FuncionarioService FuncionarioController.funcionarioService;
     
     @RequestMapping(value = "/{id}", headers = "Accept=application/json")
     @ResponseBody

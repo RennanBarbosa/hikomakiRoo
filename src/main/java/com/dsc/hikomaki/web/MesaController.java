@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("/mesas")
 @Controller
-@RooWebScaffold(path = "mesas", formBackingObject = Mesa.class)
 @RooWebJson(jsonObject = Mesa.class)
 public class MesaController {
 }

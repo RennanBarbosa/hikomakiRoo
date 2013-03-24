@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("/pratoes")
 @Controller
-@RooWebScaffold(path = "pratoes", formBackingObject = Prato.class)
 @RooWebJson(jsonObject = Prato.class)
 public class PratoController {
 }

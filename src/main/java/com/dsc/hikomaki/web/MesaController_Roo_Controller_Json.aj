@@ -4,8 +4,10 @@
 package com.dsc.hikomaki.web;
 
 import com.dsc.hikomaki.domain.Mesa;
+import com.dsc.hikomaki.servico.MesaService;
 import com.dsc.hikomaki.web.MesaController;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 privileged aspect MesaController_Roo_Controller_Json {
+    
+    @Autowired
+    MesaService MesaController.mesaService;
     
     @RequestMapping(value = "/{id}", headers = "Accept=application/json")
     @ResponseBody

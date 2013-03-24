@@ -5,8 +5,10 @@ package com.dsc.hikomaki.web;
 
 import com.dsc.hikomaki.domain.Mesa;
 import com.dsc.hikomaki.domain.Prato;
+import com.dsc.hikomaki.servico.PratoService;
 import com.dsc.hikomaki.web.PratoController;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 privileged aspect PratoController_Roo_Controller_Json {
+    
+    @Autowired
+    PratoService PratoController.pratoService;
     
     @RequestMapping(value = "/{id}", headers = "Accept=application/json")
     @ResponseBody
