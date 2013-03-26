@@ -65,26 +65,35 @@
       				<input type="text" placeholder="01/01/1991" id="data">
     			</div>
  		 	</div>
+      <div class="control-group">
+          <label class="control-label" for="idt">ID</label>
+          <div class="controls">
+            <input type="text" placeholder="Apenas para PUT e DELETE" id="idt">
+          </div>
+      </div>
 		</form>
 
 		<br/>
-			
-			<button class="btn btn-primary" id="butpost">Post</button>
-        	<button class="btn btn-primary" id="butget">Get/Listar Funcionarios</button>
+      
+      <button class="btn btn-primary" id="butget">GET</button>		
+			<button class="btn btn-primary" id="butpost">POST</button>
+      <button class="btn btn-primary" id="butput">PUT</button> 
+      <button class="btn btn-primary" id="butdel">DELETE</button> 
 
 
         <br/> <br/> <br/>  
 
         <table id="tabela" class="table">
-        	<thead>
-				<tr>
-	        		<th>Nome</th>
-	        		<th>Telefone</th>
-	        		<th>Turno</th>
-	        	</tr>
-        	</thead>
-        	<tbody>
-        	</tbody>
+          <thead>
+  				  <tr>
+              <th>ID</th>
+  	        	<th>Nome</th>
+  	        	<th>Telefone</th>
+  	        	<th>Turno</th>
+            </tr>      
+          </thead>
+          <tbody>
+          </tbody>
 
        	</table>
 
