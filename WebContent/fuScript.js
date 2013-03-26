@@ -22,19 +22,28 @@ $(document).ready(function() {
 		alert($("#nome").val()+ " adicionado com sucesso! Use o get e o verá na tabela.");
 	});
 
-	$("#butput").click(function(){
-		var j = {"dataNasc":$("#data").val(), "nome":$("#nome").val(), "telefone":$("#tel").val(), "turno":$("#turno").val()};
 
-		$.ajax ({
-			type: "PUT",
-    		url: "http://localhost:8080/hikomki-gami/funcionarios"+$("#idt").val(),
-    		data: JSON.stringify(j),
-    		processData: true,
-    		contentType: "application/json"
+	$("#butput").click(function(){		
+
+		$.getJSON("http://localhost:8080/hikomki-gami/funcionarios", function(data) {
+			for (var i = data.length - 1; i >= 0; i--) {
+				if(data[i].id == $("#idt").val()){
+					var j = {"dataNasc":$("#data").val(), "id":$("#idt").val(), "nome":$("#nome").val(), "telefone":$("#tel").val(), "turno":$("#turno").val(), "version":data[i].version};
+
+					$.ajax ({
+						type: "PUT",
+    					url: "http://localhost:8080/hikomki-gami/funcionarios",
+    					data: JSON.stringify(j),
+    					processData: true,
+    					contentType: "application/json"
+					});
+		
+					$("#tabela > tbody").html("");
+					alert($("#nome").val()+ " alterado com sucesso! Use o get e o verá na tabela.");
+				}
+			};
 		});
 
-		$("#tabela > tbody").html("");
-		alert($("#nome").val()+ " alterado com sucesso! Use o get e o verá na tabela.");
 	});
 
 	$("#butdel").click(function(){
@@ -48,6 +57,6 @@ $(document).ready(function() {
 
 		$("#tabela > tbody").html("");
 		alert("Excluído com sucesso! Use o get e o verá na tabela.");
-		clean()
+
 	});
 });
