@@ -138,3 +138,13 @@ q
 hint
 q
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-03-25 23:15:50
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-03-26 20:13:17
+hint
+exit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-03-26 20:13:37
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-03-26 20:20:30
+hint
+perform tests
+hint
+exit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-03-26 20:22:25

@@ -24,8 +24,8 @@
     					<a class="brand" href="#"></a>
     					<ul class="nav">
       						<li><a href="index.html">Home</a></li>
-      						<li class="active"><a href="#">Funcionário</a></li>
-      						<li><a href="prato.html">Pratos</a></li>
+      						<li><a href="funcionario.html">Funcionário</a></li>
+      						<li class="active"><a href="#">Pratos</a></li>
       						<li><a href="#">Mesas</a></li>
     					</ul>
   					</div>
@@ -40,53 +40,54 @@
 			</div>
         	-->
 
-    <form class="form-horizontal">
-      <div id="xxx" class="control-group">
-        <label class="control-label" for="idt">ID</label>
-        <div class="controls">
-          <input type="text" placeholder="Apenas para PUT e DELETE" id="idt">
-        </div><br>
-        <label class="control-label" for="nome">Nome</label>
-        <div class="controls">
-          <input type="text" placeholder="ex.: João" id="nome">
-        </div><br>
-        <label class="control-label" for="tel">Telefone</label>
-        <div class="controls">
-          <input type="text" placeholder="ex.: (83)1234-1234" id="tel">
-        </div><br>
-        <label class="control-label" for="turno">Turno</label>
-        <div class="controls">
-          <input type="text" placeholder="ex.: Manhã" id="turno">
-        </div><br>
-        <label class="control-label" for="data">Data Nascimento</label>
-        <div class="controls">
-          <input type="text" placeholder="ex.: 01/01/1991" id="data">
-        </div>
-      </div>
-		</form>
+<form class="form-horizontal">
+  <div class="control-group">
+    <label class="control-label" for="idm">ID</label>
+    <div class="controls">
+      <input type="text" placeholder="Apenas para PUT e DELETE" id="idm">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="nomep">Nome</label>
+    <div class="controls">
+      <input type="text" placeholder="ex.: Baião de Dois" id="nomep">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="ingred">Ingredientes</label>
+    <div class="controls">
+      <input type="text" placeholder="ex.: Arroz, feijao ..." id="ingred">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="preco">Preço</label>
+    <div class="controls">
+      <input type="text" placeholder="ex.: 23.50" id="preco">
+    </div>
+  </div>
+</form>
 
-		  <br>
-      <button class="btn btn-primary" id="butget">GET Funcionários</button>		
-			<button class="btn btn-primary" id="butpost">POST Funcionário</button>
-      <button class="btn btn-primary" id="butput">PUT Funcionário</button> 
-      <button class="btn btn-primary" id="butdel">DELETE Funcionário</button> 
-      <br><br>
+        <br>
+        <button class="btn btn-primary" id="butgetP">GET Pratos</button> 
+        <button class="btn btn-primary" id="butpostP">POST Prato</button> 
+        <button class="btn btn-primary" id="butputP">PUT Prato</button> 
+        <button class="btn btn-primary" id="butdelP">DELETE Prato</button>  
+        <br><br>
 
-        <table id="tabela" class="table">
+        <table id="tabelaPratos" class="table">
           <thead>
-  				  <tr>
+            <tr>
               <th>ID</th>
-  	        	<th>Nome</th>
-  	        	<th>Telefone</th>
-  	        	<th>Turno</th>
+              <th>Nome</th>
+              <th>Ingredientes</th>
+              <th>Preco</th>
             </tr>      
           </thead>
           <tbody>
           </tbody>
-       	</table>
+        </table>
 
-  </section>
-
+        </section>
 	 	<footer>
             <div class="navbar">
   				<div class="navbar-inner navbar-fixed-bottom" id="rodape">

@@ -1,7 +1,7 @@
 <aspectj>
 <aspects>
-<aspect name="com.dsc.hikomaki.servico.FuncionarioService_Roo_Service"/>
 <aspect name="com.dsc.hikomaki.domain.Prato_Roo_Json"/>
+<aspect name="com.dsc.hikomaki.servico.FuncionarioService_Roo_Service"/>
 <aspect name="com.dsc.hikomaki.servico.PratoServiceImpl_Roo_Service"/>
 <aspect name="com.dsc.hikomaki.web.PratoController_Roo_Controller_Json"/>
 <aspect name="com.dsc.hikomaki.domain.Prato_Roo_Configurable"/>
@@ -24,11 +24,11 @@
 <aspect name="com.dsc.hikomaki.domain.Mesa_Roo_ToString"/>
 <aspect name="com.dsc.hikomaki.domain.Prato_Roo_ToString"/>
 <aspect name="com.dsc.hikomaki.web.MesaController_Roo_Controller_Json"/>
-<aspect name="com.dsc.hikomaki.domain.Mesa_Roo_JavaBean"/>
 <aspect name="com.dsc.hikomaki.domain.Prato_Roo_Finder"/>
-<aspect name="com.dsc.hikomaki.servico.MesaService_Roo_Service"/>
+<aspect name="com.dsc.hikomaki.domain.Mesa_Roo_JavaBean"/>
 <aspect name="com.dsc.hikomaki.domain.Funcionario_Roo_Jpa_Entity"/>
 <aspect name="com.dsc.hikomaki.domain.Prato_Roo_Jpa_Entity"/>
+<aspect name="com.dsc.hikomaki.servico.MesaService_Roo_Service"/>
 </aspects>
 </aspectj>
 

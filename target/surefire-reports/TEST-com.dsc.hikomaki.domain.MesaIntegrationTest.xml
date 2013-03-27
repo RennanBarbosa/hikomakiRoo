@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.243" errors="0" skipped="0" tests="10" name="com.dsc.hikomaki.domain.MesaIntegrationTest">
+<testsuite failures="0" time="1.232" errors="0" skipped="0" tests="10" name="com.dsc.hikomaki.domain.MesaIntegrationTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries"/>
-    <property name="java.vm.version" value="20.14-b01-442"/>
+    <property name="java.vm.version" value="20.14-b01-447"/>
     <property name="awt.nativeDoubleBuffering" value="true"/>
     <property name="gopherProxySet" value="false"/>
-    <property name="mrj.build" value="10M4008"/>
+    <property name="mrj.build" value="10M4203"/>
     <property name="java.vm.vendor" value="Apple Inc."/>
     <property name="java.vendor.url" value="http://www.apple.com/"/>
     <property name="path.separator" value=":"/>
@@ -17,12 +17,12 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="unknown"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/Users/Rennan/Dropbox/UFPB/2012.1/Distribuídos/dsc-restaurante"/>
-    <property name="java.runtime.version" value="1.6.0_39-b04-442-10M4008"/>
+    <property name="user.dir" value="/Users/Tony/Documents/workspace/dsc-restaurante-roo"/>
+    <property name="java.runtime.version" value="1.6.0_43-b01-447-10M4203"/>
     <property name="java.awt.graphicsenv" value="apple.awt.CGraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/endorsed"/>
     <property name="os.arch" value="x86_64"/>
-    <property name="java.io.tmpdir" value="/var/folders/Kz/KzcUf6k3FB8f+4i2gQ94pU+++TI/-Tmp-/"/>
+    <property name="java.io.tmpdir" value="/var/folders/6R/6RlFJY9HFGKct9qkQfo4Sk+++TI/-Tmp-/"/>
     <property name="line.separator" value="
 "/>
     <property name="java.vm.specification.vendor" value="Sun Microsystems Inc."/>
@@ -35,12 +35,12 @@
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="os.version" value="10.6.8"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
-    <property name="user.home" value="/Users/Rennan"/>
-    <property name="user.timezone" value="GMT-03:00"/>
+    <property name="user.home" value="/Users/Tony"/>
+    <property name="user.timezone" value="America/Sao_Paulo"/>
     <property name="java.awt.printerjob" value="apple.awt.CPrinterJob"/>
     <property name="java.specification.version" value="1.6"/>
     <property name="file.encoding" value="MacRoman"/>
-    <property name="user.name" value="Rennan"/>
+    <property name="user.name" value="Tony"/>
     <property name="java.class.path" value="/usr/share/maven/boot/plexus-classworlds-2.4.jar"/>
     <property name="java.vm.specification.version" value="1.0"/>
     <property name="sun.arch.data.model" value="64"/>
@@ -50,7 +50,7 @@
     <property name="user.language" value="pt"/>
     <property name="awt.toolkit" value="apple.awt.CToolkit"/>
     <property name="java.vm.info" value="mixed mode"/>
-    <property name="java.version" value="1.6.0_39"/>
+    <property name="java.version" value="1.6.0_43"/>
     <property name="java.ext.dirs" value="/Library/Java/Extensions:/System/Library/Java/Extensions:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext"/>
     <property name="sun.boot.class.path" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jsfd.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar:/System/Library/Frameworks/JavaVM.framework/Frameworks/JavaRuntimeSupport.framework/Resources/Java/JavaRuntimeSupport.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/ui.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/laf.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/sunrsasign.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jsse.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jce.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/charsets.jar"/>
     <property name="java.vendor" value="Apple Inc."/>
@@ -59,19 +59,19 @@
     <property name="java.vendor.url.bug" value="http://bugreport.apple.com/"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-    <property name="mrj.version" value="1060.1.6.0_39-442"/>
+    <property name="mrj.version" value="1060.1.6.0_43-447"/>
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0" classname="com.dsc.hikomaki.domain.MesaIntegrationTest" name="testMarkerMethod"/>
-  <testcase time="0.042" classname="com.dsc.hikomaki.domain.MesaIntegrationTest" name="testFlush"/>
-  <testcase time="0.03" classname="com.dsc.hikomaki.domain.MesaIntegrationTest" name="testMergeUpdate"/>
-  <testcase time="0.029" classname="com.dsc.hikomaki.domain.MesaIntegrationTest" name="testPersist"/>
-  <testcase time="0.03" classname="com.dsc.hikomaki.domain.MesaIntegrationTest" name="testRemove"/>
-  <testcase time="0" classname="com.dsc.hikomaki.domain.MesaIntegrationTest" name="testRelacionamentoMesa"/>
-  <testcase time="0.036" classname="com.dsc.hikomaki.domain.MesaIntegrationTest" name="testCountMesas"/>
-  <testcase time="0.023" classname="com.dsc.hikomaki.domain.MesaIntegrationTest" name="testFindMesa"/>
-  <testcase time="0.028" classname="com.dsc.hikomaki.domain.MesaIntegrationTest" name="testFindAllMesas"/>
-  <testcase time="0.025" classname="com.dsc.hikomaki.domain.MesaIntegrationTest" name="testFindMesaEntries"/>
+  <testcase time="0.003" classname="com.dsc.hikomaki.domain.MesaIntegrationTest" name="testMarkerMethod"/>
+  <testcase time="0.046" classname="com.dsc.hikomaki.domain.MesaIntegrationTest" name="testFlush"/>
+  <testcase time="0.002" classname="com.dsc.hikomaki.domain.MesaIntegrationTest" name="testRelacionamentoMesa"/>
+  <testcase time="0.037" classname="com.dsc.hikomaki.domain.MesaIntegrationTest" name="testCountAllMesas"/>
+  <testcase time="0.025" classname="com.dsc.hikomaki.domain.MesaIntegrationTest" name="testFindMesa"/>
+  <testcase time="0.044" classname="com.dsc.hikomaki.domain.MesaIntegrationTest" name="testFindAllMesas"/>
+  <testcase time="0.021" classname="com.dsc.hikomaki.domain.MesaIntegrationTest" name="testFindMesaEntries"/>
+  <testcase time="0.066" classname="com.dsc.hikomaki.domain.MesaIntegrationTest" name="testUpdateMesaUpdate"/>
+  <testcase time="0.925" classname="com.dsc.hikomaki.domain.MesaIntegrationTest" name="testSaveMesa"/>
+  <testcase time="0.063" classname="com.dsc.hikomaki.domain.MesaIntegrationTest" name="testDeleteMesa"/>
 </testsuite>
