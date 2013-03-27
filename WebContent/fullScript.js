@@ -1,7 +1,46 @@
 $(document).ready(function() {
+	
+	$('.dropdown-toggle').dropdown();
+	
+	//Botao GET para menu
+	$.getJSON("http://localhost:8080/hikomki-gami/funcionarios", function(data) {
+		$.each(data, function(name, value) {
+			$(".dropdown-menu").append("<li><a id="+value.id+" href='#'>ID "+ value.id +" - "+ value.nome + "</a></li>");
+		});
+	});
+
+	$(".btn-group ul").click(function() {
+		alert($('#2').attr('id'));
+		//$(".btn-group .btn").html($("a").html());
+	});
+
+	function msg(msg) {
+		$("#msg").html(
+			'<div class="alert alert-success">'+
+  				'<button type="button" class="close" data-dismiss="alert">&times;</button>'+
+  				'<strong>Sucesso! </strong>'+ msg +
+			'</div>'
+		);
+	};
+
+	function msg2(msg) {
+		$("#msg").html(
+			'<div class="alert">'+
+  				'<button type="button" class="close" data-dismiss="alert">&times;</button>'+
+  				'<strong>Atenção! </strong>'+ msg +
+			'</div>'
+		);
+	};
+
+	function resetForm() {
+		$(".form-horizontal").each(function(){
+	        this.reset();
+		});
+	};
+
 	//Botao GET para funcionario
 	$("#butget").click(function() {
-		//$("#tabela > tbody").html("");
+		$("#tabela > tbody").html("");
 		$.getJSON("http://localhost:8080/hikomki-gami/funcionarios", function(data) {
 			$.each(data, function(name, value) {
 				$("#tabela > tbody").append("<tr><td id='cod'>"+ value.id +"</td><td id='nome'>"+ value.nome + "</td><td id='tel'>"+ value.telefone + "</td><td id='turno'>"+ value.turno + "</td></tr>");
@@ -19,6 +58,16 @@ $(document).ready(function() {
 		});
 	});
 
+	//Botao GET para mesa
+	$("#butgetM").click(function() {
+		$("#tabelaMesas > tbody").html("");
+		$.getJSON("http://localhost:8080/hikomki-gami/mesas", function(data) {
+			$.each(data, function(name, value) {
+				$("#tabelaMesas > tbody").append("<tr><td id='cod'>"+ value.id +"</td><td id='nome'>"+ value.nomeMesa +"</td><td id='idFunc'>"+value.funcionario.id+"</td><td id='func'>"+ value.funcionario.nome +"</td><td id='prat'>"+ "" +"</td></tr>");
+			});
+		});
+	});
+
 	//Botao POST para funcionario
 	$("#butpost").click(function(){
 		var j = {"dataNasc":$("#data").val(), "nome":$("#nome").val(), "telefone":$("#tel").val(), "turno":$("#turno").val()};
@@ -29,10 +78,12 @@ $(document).ready(function() {
     		data: JSON.stringify(j),
     		processData: true,
     		contentType: "application/json"
+		}).done(function() {
+  			resetForm();
+  			msg("Cadastro realizado corretamente. Verifique clicando em GET.");
 		});
-
+		
 		$("#tabela > tbody").html("");
-		alert($("#nome").val()+ " adicionado com sucesso! Use o get e o verá na tabela.");
 	});
 
 	//Botao POST para prato
@@ -45,10 +96,35 @@ $(document).ready(function() {
     		data: JSON.stringify(j),
     		processData: true,
     		contentType: "application/json"
+		}).done(function() {
+  			resetForm();
+  			msg("Cadastro realizado corretamente. Verifique clicando em GET.");
 		});
 
 		$("#tabelaPratos > tbody").html("");
-		alert($("#nomep").val()+ " adicionado com sucesso! Use o get e o verá na tabela.");
+	});
+
+	//Botao POST para mesa
+	$("#butpostM").click(function(){
+		$.getJSON("http://localhost:8080/hikomki-gami/funcionarios", function(data) {
+			$.each(data, function(name, value) {
+				if (value.id == $("#func").val()) {
+					var j = {"funcionario":{"dataNasc":value.dataNasc,"id":value.id,"nome":value.nome,"telefone":value.telefone,"turno":value.turno,"version":value.version}, "nomeMesa":$("#nome").val()};
+					$.ajax ({
+						type: "POST",
+    					url: "http://localhost:8080/hikomki-gami/mesas",
+    					data: JSON.stringify(j),
+    					processData: true,
+    					contentType: "application/json"
+					}).done(function() {
+  						resetForm();
+  						msg("Cadastro realizado corretamente. Verifique clicando em GET.");
+					});	
+
+					$("#tabelaMesas > tbody").html("");
+				}else { msg2("Este funcionário não existe!"); };
+			});
+		});	
 	});
 
 	//Botao PUT para funcionario
@@ -63,11 +139,13 @@ $(document).ready(function() {
     					data: JSON.stringify(j),
     					processData: true,
     					contentType: "application/json"
+					}).done(function() {
+  						resetForm();
+  						msg("Edição realizada corretamente. Verifique clicando em GET.");
 					});
 		
 					$("#tabela > tbody").html("");
-					alert($("#nome").val()+ " alterado com sucesso! Use o get e o verá na tabela.");
-				}
+				};
 			};
 		});
 	});
@@ -84,12 +162,46 @@ $(document).ready(function() {
     					data: JSON.stringify(j),
     					processData: true,
     					contentType: "application/json"
+					}).done(function() {
+  						resetForm();
+  						msg("Edição realizada corretamente. Verifique clicando em GET.");
 					});
 		
 					$("#tabelaPratos > tbody").html("");
-					alert($("#nomep").val()+ " alterado com sucesso! Use o get e o verá na tabela.");
-				}
+				};
 			};
+		});
+	});
+
+	//Botao PUT para mesa
+	$("#butputM").click(function(){		
+		$.getJSON("http://localhost:8080/hikomki-gami/mesas", function(d) {
+			$.each(d, function(name, v) {
+				if(v.id == $("#idz").val()){
+
+					$.getJSON("http://localhost:8080/hikomki-gami/funcionarios", function(data) {
+						$.each(data, function(name, value) {
+							if (value.id == $("#func").val()) {
+								var j = {"id":$("#idz").val(),"funcionario":{"dataNasc":value.dataNasc,"id":value.id,"nome":value.nome,"telefone":value.telefone,"turno":value.turno,"version":value.version}, "nomeMesa":$("#nome").val(), "version":v.version};
+								//var j = {"id":$("#idz").val(), "nome":$("#nome").val(), "version":data[i].version};
+								$.ajax ({
+									type: "PUT",
+    								url: "http://localhost:8080/hikomki-gami/mesas",
+    								data: JSON.stringify(j),
+    								processData: true,
+    								contentType: "application/json"
+								}).done(function() {
+  									resetForm();
+  									msg("Edição realizada corretamente. Verifique clicando em GET.");
+								});
+		
+								$("#tabelaMesas > tbody").html("");
+							};
+						});
+					});	
+
+				};
+			});
 		});
 	});
 
@@ -100,10 +212,12 @@ $(document).ready(function() {
     		url: "http://localhost:8080/hikomki-gami/funcionarios/"+$("#idt").val(),
     		processData: true,
     		contentType: "application/json"
+		}).done(function() {
+  			resetForm();
+  			msg("Remoção realizada corretamente. Verifique clicando em GET.");
 		});
 
 		$("#tabela > tbody").html("");
-		alert("Excluído com sucesso! Use o get e o verá na tabela.");
 	});
 
 	//Botao DELETE pra prato
@@ -113,9 +227,26 @@ $(document).ready(function() {
     		url: "http://localhost:8080/hikomki-gami/pratoes/"+$("#idm").val(),
     		processData: true,
     		contentType: "application/json"
+		}).done(function() {
+  			resetForm();
+  			msg("Remoção realizada corretamente. Verifique clicando em GET.");
 		});
 
 		$("#tabelaPratos > tbody").html("");
-		alert("Excluído com sucesso! Use o get e o verá na tabela.");
+	});
+
+	//Botao DELETE pra mesa
+	$("#butdelM").click(function(){
+		$.ajax ({
+			type: "DELETE",
+    		url: "http://localhost:8080/hikomki-gami/mesas/"+$("#idz").val(),
+    		processData: true,
+    		contentType: "application/json"
+		}).done(function() {
+  			resetForm();
+  			msg("Remoção realizada corretamente. Verifique clicando em GET.");
+		});
+
+		$("#tabelaMesas > tbody").html("");
 	});
 });

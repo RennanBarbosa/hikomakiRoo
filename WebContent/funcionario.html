@@ -1,99 +1,96 @@
 <!DOCTYPE HTML>
 <html lang="pt-br">
-	<head>
-		<title>HIKOMAKI Restaurantes Ltd v2.0 - Funcionários</title>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Sistema web para atendimento de restaurantes">
-		<meta name="author" content="Tony Silva, Francisco Ihago e Rennan Barbosa">
-		<link rel="stylesheet" type="text/css" href="style.css">
-		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
-		<script type="text/javascript" src="fullScript.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-	</head>
-	<body>
-		<div id="site">
-		<header>
-   			<!-- lembrar de colocar cor neste cabeçalho com CSS -->
-   			<div class="page-header" align="center">
-  				<h1>Sistema de Atendimento Hikomaki - Funcionário <small>v2.0</small></h1>
-			</div>
-			<nav>
-       			<div class="navbar">
-  					<div class="navbar-inner">
-    					<a class="brand" href="#"></a>
-    					<ul class="nav">
-      						<li><a href="index.html">Home</a></li>
-      						<li class="active"><a href="#">Funcionário</a></li>
-      						<li><a href="prato.html">Pratos</a></li>
-      						<li><a href="#">Mesas</a></li>
-    					</ul>
-  					</div>
-				</div>
-			</nav>
-		</header>
-		<section id="conteudo">
-            <!--
-            <div class="alert alert-success">
-  				<button type="button" class="close" data-dismiss="alert">&times;</button>
-  				<strong>Sucesso!</strong> O cadastro foi realizado corretamente.
-			</div>
-        	-->
-
-    <form class="form-horizontal">
-      <div id="xxx" class="control-group">
-        <label class="control-label" for="idt">ID</label>
-        <div class="controls">
-          <input type="text" placeholder="Apenas para PUT e DELETE" id="idt">
-        </div><br>
-        <label class="control-label" for="nome">Nome</label>
-        <div class="controls">
-          <input type="text" placeholder="ex.: João" id="nome">
-        </div><br>
-        <label class="control-label" for="tel">Telefone</label>
-        <div class="controls">
-          <input type="text" placeholder="ex.: (83)1234-1234" id="tel">
-        </div><br>
-        <label class="control-label" for="turno">Turno</label>
-        <div class="controls">
-          <input type="text" placeholder="ex.: Manhã" id="turno">
-        </div><br>
-        <label class="control-label" for="data">Data Nascimento</label>
-        <div class="controls">
-          <input type="text" placeholder="ex.: 01/01/1991" id="data">
-        </div>
+  <head>
+    <title>HIKOMAKI Restaurantes Ltd v2.0 - Funcionário</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Sistema web para atendimento de restaurantes">
+    <meta name="author" content="Tony Silva, Francisco Ihago e Rennan Barbosa">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="fullScript.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    
+    <header>
+        <div class="page-header" align="center">
+          <h1>Sistema de Atendimento Hikomaki - Funcionário <small>v2.0</small></h1>
       </div>
-		</form>
+      <nav>
+            <div class="navbar">
+            <div class="navbar-inner">
+              <a class="brand" href="#"></a>
+              <ul class="nav">
+                  <li><a href="index.html">Home</a></li>
+                  <li class="active"><a href="#">Funcionário</a></li>
+                  <li><a href="prato.html">Pratos</a></li>
+                  <li><a href="mesa.html">Mesas</a></li>
+              </ul>
+            </div>
+        </div>
+      </nav>
+    </header>
+    <section id="conteudo">
+      <div id="msg"></div>
+      <form class="form-horizontal">
+        <div class="control-group">
+          
+          <label class="control-label" for="idt">ID</label>
+          <div class="controls">
+            <input type="text" placeholder="Apenas para PUT e DELETE" id="idt">
+          </div><br>
+          
+          <label class="control-label" for="nome">Nome</label>
+          <div class="controls">
+            <input type="text" placeholder="ex.: João" id="nome">
+          </div><br>
+          
+          <label class="control-label" for="tel">Telefone</label>
+          <div class="controls">
+            <input type="text" placeholder="ex.: (83)1234-1234" id="tel">
+          </div><br>
+          
+          <label class="control-label" for="turno">Turno</label>
+          <div class="controls">
+            <input type="text" placeholder="ex.: Manhã" id="turno">
+          </div><br>
+          
+          <label class="control-label" for="data">Data Nascimento</label>
+          <div class="controls">
+            <input type="text" placeholder="ex.: 01/01/1991" id="data">
+          </div>
+        
+        </div>
+      </form>
 
-		  <br>
-      <button class="btn btn-primary" id="butget">GET Funcionários</button>		
-			<button class="btn btn-primary" id="butpost">POST Funcionário</button>
+      <br>
+      <button class="btn btn-primary" id="butget">GET Funcionários</button>   
+      <button class="btn btn-primary" id="butpost">POST Funcionário</button>
       <button class="btn btn-primary" id="butput">PUT Funcionário</button> 
       <button class="btn btn-primary" id="butdel">DELETE Funcionário</button> 
       <br><br>
 
-        <table id="tabela" class="table">
-          <thead>
-  				  <tr>
-              <th>ID</th>
-  	        	<th>Nome</th>
-  	        	<th>Telefone</th>
-  	        	<th>Turno</th>
-            </tr>      
-          </thead>
-          <tbody>
-          </tbody>
-       	</table>
+      <table id="tabela" class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Telefone</th>
+            <th>Turno</th>
+          </tr>      
+        </thead>
+        <tbody></tbody>
+      </table>
 
-  </section>
-
-	 	<footer>
-            <div class="navbar">
-  				<div class="navbar-inner navbar-fixed-bottom" id="rodape">
-    				<a class="brand"><small>© Todos os direitos reservados 2013. Hikomaki Restaurantes Ltd.</small></a>
-  				</div>
-			</div>
-		</footer>  
-		</div>
-	</body>
+    </section>
+      <footer>
+        <div class="navbar">
+          <div class="navbar-inner navbar-fixed-bottom" id="rodape">
+            <a class="brand"><small>© Todos os direitos reservados 2013. Hikomaki Restaurantes Ltd.</small></a>
+          </div>
+        </div>
+      </footer>  
+    
+  </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="pt-br">
 	<head>
-		<title>HIKOMAKI Restaurantes Ltd v2.0 - Prato</title>
+		<title>HIKOMAKI Restaurantes Ltd v2.0 - Mesa</title>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Sistema web para atendimento de restaurantes">
 		<meta name="author" content="Tony Silva, Francisco Ihago e Rennan Barbosa">
@@ -24,8 +24,8 @@
     					<ul class="nav">
       						<li><a href="index.html">Home</a></li>
       						<li><a href="funcionario.html">Funcionário</a></li>
-      						<li class="active"><a href="#">Pratos</a></li>
-      						<li><a href="mesa.html">Mesas</a></li>
+      						<li><a href="prato.html">Pratos</a></li>
+      						<li class="active"><a href="#">Mesas</a></li>
     					</ul>
   					</div>
 				</div>
@@ -38,41 +38,48 @@
         
         <label class="control-label" for="idm">ID</label>
         <div class="controls">
-          <input type="text" placeholder="Apenas para PUT e DELETE" id="idm">
+          <input type="text" placeholder="Apenas para PUT e DELETE" id="idz">
         </div><br>
       
-        <label class="control-label" for="nomep">Nome</label>
+        <label class="control-label" for="nome">Nome</label>
         <div class="controls">
-          <input type="text" placeholder="ex.: Baião de Dois" id="nomep">
+          <input type="text" placeholder="ex.: Mesa externa" id="nome">
         </div><br>
-        
-        <label class="control-label" for="ingred">Ingredientes</label>
+ 
+        <label class="control-label" for="func">ID Funcionário</label>
         <div class="controls">
-          <input type="text" placeholder="ex.: Arroz, feijao ..." id="ingred">
-        </div><br>
-      
-        <label class="control-label" for="preco">Preço</label>
-        <div class="controls">
-          <input type="text" placeholder="ex.: 23.50" id="preco">
-        </div>
+          <input type="text" placeholder="ex.: 12" id="func">
+          <!--<div class="btn-group">
+            <a class="btn dropdown-toggle" href="#">
+            Funcionários <span class="caret"></span></a>
+            <ul class="dropdown-menu"></ul>
+          </div>-->
 
+        </div><br>
+        <!--
+        <label class="control-label" for="prat">Pratos</label>
+        <div class="controls">
+          <input type="text" placeholder="ex.: 23.50" id="prat">
+        </div>
+        -->
       </div>
     </form>
 
     <br>
-    <button class="btn btn-primary" id="butgetP">GET Pratos</button> 
-    <button class="btn btn-primary" id="butpostP">POST Prato</button> 
-    <button class="btn btn-primary" id="butputP">PUT Prato</button> 
-    <button class="btn btn-primary" id="butdelP">DELETE Prato</button>  
+    <button class="btn btn-primary" id="butgetM">GET Mesas</button> 
+    <button class="btn btn-primary" id="butpostM">POST Mesa</button> 
+    <button class="btn btn-primary" id="butputM">PUT Mesa</button> 
+    <button class="btn btn-primary" id="butdelM">DELETE Mesa</button>  
     <br><br>
 
-    <table id="tabelaPratos" class="table">
+    <table id="tabelaMesas" class="table">
       <thead>
         <tr>
           <th>ID</th>
           <th>Nome</th>
-          <th>Ingredientes</th>
-          <th>Preco</th>
+          <th>ID Funcionário</th>
+          <th>Funcionário</th>
+          <th>Pratos</th>
         </tr>      
       </thead>
       <tbody></tbody>
